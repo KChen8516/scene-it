@@ -16,6 +16,10 @@
   margin-top: -20px;
 }
 
+.ReviewForm div {
+  width: 100%;
+}
+
 .BackButtonSection {
   display: flex;
   align-items: center;

@@ -113,7 +113,7 @@ class App extends Component {
                     <span className="BackButton">Back</span>
                   </div>
                 ) : (
-                  <a className="material-icons mdc-toolbar__icon--menu"
+                  <a className="MenuIcon material-icons mdc-toolbar__icon--menu"
                      style={!isHomePage ? SubNavIcon : null}>menu</a>
                 )}
               </section>
@@ -122,7 +122,7 @@ class App extends Component {
               </section>
               <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
                 {currentRoute !== '/reviewform' ? (
-                  <a className="material-icons mdc-toolbar__icon--menu"
+                  <a className="SearchIcon material-icons mdc-toolbar__icon--menu"
                      style={!isHomePage ? SubNavIcon : null}>search</a>
                  ) : (
                   <span className="SubmitForm">Save</span>

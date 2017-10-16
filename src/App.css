@@ -20,6 +20,14 @@
   color: #4a4a4a;
 }
 
+.MenuIcon {
+  padding-left: 10px;
+}
+
+.SearchIcon {
+  padding-right: 10px;
+}
+
 .SideDrawer {
   background-color: #2571af;
 }
