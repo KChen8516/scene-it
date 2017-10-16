@@ -1,0 +1,28 @@
+.MoviePoster {
+  height: 500px;
+  widows: 1000px;
+}
+
+.MovieInfo {
+  margin-left: 10px;
+}
+
+.ReviewButton {
+  margin-right: 10px;
+}
+
+.NoteButton {
+  margin-left: 10px;
+}
+
+.NoteInput {
+  margin-bottom: 0;
+}
+
+.Upvote {
+  margin-right: 10px;
+}
+
+.Downvote {
+  margin-left: 10px;
+}

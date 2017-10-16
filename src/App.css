@@ -1,0 +1,78 @@
+.Navbar {
+  position: absolute;
+  z-index: 2;
+  /* FF3.6-15 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.1) 100%);
+}
+
+.MainNavTitle {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.SubNavTitle {
+  font-weight: 200;
+  font-size: 1.4rem;
+  color: #4a4a4a;
+}
+
+.SideDrawer {
+  background-color: #2571af;
+}
+
+.SideDrawerHeader {
+  flex-direction: column;
+  padding: 30px 16px 0 16px;
+  align-items: center;
+}
+
+.SideDrawerHeader h1 {
+  margin: 0;
+  font-weight: 200;
+  color: white;
+}
+
+.SideDrawerHeader p {
+  margin: 0;
+  font-weight: 200;
+  color: white;
+}
+
+.SideDrawerImage {
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+.SideDrawerNavigation {
+  position: relative;
+  margin-top: 20px;
+}
+
+.SideDrawerNavigation:before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  border-bottom: 1px solid #fff;
+}
+
+.SideDrawerNavigation::after {
+  content: '';
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  bottom: -10px;
+  border-bottom: 1px solid #fff;
+}
+
+.SideDrawerNavLink {
+  color: white !important;
+  font-weight: 200 !important;
+  font-size: 1.25rem !important;
+  padding-left: 30px !important;
+}

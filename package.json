@@ -1,0 +1,31 @@
+{
+  "name": "sceneit",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material/drawer": "^0.5.9",
+    "@material/form-field": "^0.2.16",
+    "@material/icon-toggle": "^0.1.22",
+    "@material/textfield": "^0.4.1",
+    "axios": "^0.16.2",
+    "materialize-css": "^0.98.2",
+    "qs": "^6.5.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^4.3.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
