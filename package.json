@@ -8,7 +8,6 @@
     "@material/icon-toggle": "^0.1.22",
     "@material/textfield": "^0.4.1",
     "axios": "^0.16.2",
-    "materialize-css": "^0.98.2",
     "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
