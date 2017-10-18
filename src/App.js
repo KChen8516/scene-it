@@ -5,7 +5,7 @@ import {
   Link
 } from 'react-router-dom';
 
-import { MDCTemporaryDrawer } from '@material/drawer';
+import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
 // Containers
 import HomeContainer from './containers/HomeContainer';

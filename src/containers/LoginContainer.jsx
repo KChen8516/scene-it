@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 
-import { MDCTextfield } from '@material/textfield';
+import { MDCTextfield } from '@material/textfield/dist/mdc.textfield';
 
 import Login from '../components/Login';
 
