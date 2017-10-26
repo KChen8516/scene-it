@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import '../styles/Review.css';
-import MoviePoster from '../assets/wall-e.jpeg';
+import MoviePoster from '../assets/wall-e.jpg';
 import ProfileImage from '../assets/ariana-grande.jpg';
 import EditIcon from '../assets/icon-edit.svg';
 

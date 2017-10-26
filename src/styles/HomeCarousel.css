@@ -1,5 +1,5 @@
 .HomePage-1 {
-  background-image: url(../assets/bkg-tv.png);
+  background-image: url(../assets/bkg-tv.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -7,7 +7,7 @@
 }
 
 .HomePage-2 {
-  background-image: url(../assets/bkg-computer.png);
+  background-image: url(../assets/bkg-computer.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
