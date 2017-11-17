@@ -29,6 +29,10 @@
   font-size: 12px;
 }
 
+.ReviewListLink {
+  text-decoration: none;
+}
+
 .ReviewItem {
   margin-top: 20px;
 }
