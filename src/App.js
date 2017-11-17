@@ -17,6 +17,7 @@ import Register from './components/Register';
 import Review from './components/Review';
 import PageNotFound from './components/PageNotFound';
 // import ProfileContainer from './containers/ProfileContainer';
+import ReviewListContainer from './containers/ReviewListContainer';
 
 // CSS
 import './App.css';
@@ -93,7 +94,11 @@ class App extends Component {
         case '/reviewform':
           NavbarTitle = <span className="mdc-typography--headline SubNavTitle">New Review</span>;
           break;
+        case '/reviewlist':
+          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">My Reviews</span>;
+          break;
         default:
+          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">404</span>;
           break;
       }
     } else {
@@ -142,15 +147,20 @@ class App extends Component {
               </div>
             </header>
 
-            <div className="SideDrawerNavigation">
+            <div className="SideDrawerMainNavigation">
               <nav id="icon-with-text-demo" className="mdc-temporary-drawer__content mdc-list">
                 <Link to="/reviewform" className="SideDrawerNavLink mdc-list-item">
-                  <p>Write Review</p>
+                  <p>Write a Review</p>
                 </Link>
-                <Link to="/review" className="SideDrawerNavLink mdc-list-item mdc-typography--title">
+                <Link to="/reviewlist" className="SideDrawerNavLink mdc-list-item mdc-typography--title">
                   My Reviews
                 </Link>
               </nav>
+            </div>
+            <div className="SideDrawerSubNavigation">
+              <Link to="/info" className="SideDrawerNavLink mdc-list-item mdc-typography--title">
+                App Info
+              </Link>
             </div>
           </nav>
         </aside>
@@ -160,8 +170,9 @@ class App extends Component {
             <Route exact path="/login" component={LoginContainer}/>
             <Route exact path="/register" component={Register}/>
             <Route exact path="/review" component={Review}/>
+            <Route exact path="/reviewlist" component={ReviewListContainer}/>
             <Route exact path="/reviewform" component={ReviewFormContainer}/>
-            <Route exact path="/404" component={PageNotFound} />
+            <Route component={PageNotFound} />
           </Switch>
         </div>
         <div className="App-Footer">

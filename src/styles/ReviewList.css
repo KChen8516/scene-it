@@ -1,0 +1,48 @@
+.ReviewListPage {
+  padding-top: 70px;
+}
+
+.ProfileHeader {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 0.25px solid #979797;
+}
+
+.ProfileHeader img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-top: 30px;
+}
+
+.ProfileHeader h3 {
+  margin: 5px 0 0 0;
+  font-weight: 200;
+}
+
+.ProfileHeader p {
+  font-weight: 200;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.ReviewItem {
+  margin-top: 20px;
+}
+
+.ReviewHeader {
+  padding-top: 5px;
+}
+
+.ReviewHeader h2 {
+  font-weight: 200;
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.ReviewText {
+  font-weight: 200;
+  font-size: 14px;
+}

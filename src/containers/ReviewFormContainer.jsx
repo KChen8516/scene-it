@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { MDCTextfield } from '@material/textfield/dist/mdc.textfield';
-// import { MDCIconToggle } from '@material/icon-toggle/dist/mdc.icon-toggle';
+import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
 
 import ReviewForm from '../components/ReviewForm';
 
@@ -13,8 +12,7 @@ class ReviewFormContainer extends Component {
 
   componentDidMount() {
     //Initialize MDC form elements
-    new MDCTextfield(document.querySelector('.mdc-textfield'));
-    // MDCIconToggle.attachTo(document.querySelector('.mdc-icon-toggle'));
+    new MDCTextField(document.querySelector('.mdc-text-field'));
   }
 
   render() {

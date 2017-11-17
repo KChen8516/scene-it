@@ -56,12 +56,16 @@
   width: 75px;
 }
 
-.SideDrawerNavigation {
+.SideDrawerMainNavigation {
   position: relative;
   margin-top: 20px;
 }
 
-.SideDrawerNavigation:before {
+.SideDrawerSubNavigation {
+  margin-top: 20px;
+}
+
+.SideDrawerMainNavigation:before {
   content: '';
   position: absolute;
   width: 90%;
@@ -69,7 +73,7 @@
   border-bottom: 1px solid #fff;
 }
 
-.SideDrawerNavigation::after {
+.SideDrawerMainNavigation::after {
   content: '';
   position: absolute;
   width: 90%;

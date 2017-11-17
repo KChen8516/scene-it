@@ -5,8 +5,7 @@
   "dependencies": {
     "@material/drawer": "^0.5.9",
     "@material/form-field": "^0.2.16",
-    "@material/icon-toggle": "^0.1.22",
-    "@material/textfield": "^0.4.1",
+    "@material/textfield": "^0.25.0",
     "axios": "^0.16.2",
     "qs": "^6.5.0",
     "react": "^15.6.1",

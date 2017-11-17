@@ -46,15 +46,15 @@
   margin-bottom: 0;
 }
 
-.Toggled {
+/*.Toggled {
   color: black;
 }
 
 .NotToggled {
   color: white;
-}
+}*/
 
-.ThumbUpIcon {
+/*.ThumbUpIcon {
   background-color: #d8d8d8;
   border-radius: 20%;
   padding: 5px;
@@ -65,12 +65,14 @@
 .ThumbDownIcon {
   background-color: #d8d8d8;
   margin-left: 10px;
-}
+}*/
 
 .AddSection {
   display: flex;
   align-items: center;
   color: #bcbcbc;
+  margin-top: -15px;
+  margin-left: -5px;
 }
 
 .AddIcon {
@@ -83,8 +85,28 @@
 }
 
 .CommentField {
-  display: block;
+  display: flex;
   margin-top: 10px;
+}
+
+.CommentField i {
+  background-color: #d8d8d8;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.LikeIcon {
+  margin-left: -5px;
+  color: green;
+}
+
+.DislikeIcon {
+  color: white;
+}
+
+.LongReview {
+  height: 200px !important;
 }
 
 .SubmitForm {
