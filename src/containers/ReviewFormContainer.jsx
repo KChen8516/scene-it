@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-
-import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
+import { connect } from 'react-redux';
 
 import ReviewForm from '../components/ReviewForm';
 
+import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
+
 class ReviewFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
 
   componentDidMount() {
     //Initialize MDC form elements
@@ -20,4 +17,18 @@ class ReviewFormContainer extends Component {
   }
 }
 
-export default ReviewFormContainer;
+// Might not be necessary since we don't need a ref to state
+const mapStateToProps = state => {
+  return {
+
+  }
+}
+
+// Need a ref to dispatch for form actions
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewFormContainer);

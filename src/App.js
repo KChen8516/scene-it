@@ -10,26 +10,26 @@ import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 // Containers
 import HomeContainer from './containers/HomeContainer';
 import ReviewFormContainer from './containers/ReviewFormContainer';
-// import SearchContainer from './containers/SearchContainer';
-// import MovieContainer from './containers/MovieContainer';
 import LoginContainer from './containers/LoginContainer';
 import Register from './components/Register';
 import Review from './components/Review';
 import PageNotFound from './components/PageNotFound';
-// import ProfileContainer from './containers/ProfileContainer';
 import ReviewListContainer from './containers/ReviewListContainer';
 
-// CSS
+// CSS and assets
 import './App.css';
 import ProfileImage from './assets/ariana-grande.jpg';
 
-// React only provides 'this' context to lifecycle methods
 class App extends Component {
 
+  /**
+   * React only provides 'this' context to lifecycle methods
+   * such as the constructor.
+   */
   constructor(props) {
     super(props);
 
-    console.log(this.props);
+    console.log('App props', this.props);
 
     if (this.props.history.location.pathname === '/review') {
       console.log('Review Page');
@@ -71,7 +71,6 @@ class App extends Component {
 
   render() {
     console.log('App.js component rendering');
-    // this.registerDrawer();
 
     const currentRoute = this.props.location.pathname;
     let isHomePage = true;
@@ -130,7 +129,7 @@ class App extends Component {
                   <a className="SearchIcon material-icons mdc-toolbar__icon--menu"
                      style={!isHomePage ? SubNavIcon : null}>search</a>
                  ) : (
-                  <span className="SubmitForm">Save</span>
+                  null
                  )}
               </section>
             </div>
