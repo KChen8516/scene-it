@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { createReview } from '../actions/reviewActions';
+
 import ReviewForm from '../components/ReviewForm';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
@@ -12,8 +14,13 @@ class ReviewFormContainer extends Component {
     new MDCTextField(document.querySelector('.mdc-text-field'));
   }
 
+  submitReview(e) {
+    // Dispatch review data
+    this.props.createReview(e);
+  }
+
   render() {
-      return <ReviewForm />
+      return <ReviewForm submitReview={this.submitReview.bind(this)}/>
   }
 }
 
@@ -24,10 +31,10 @@ const mapStateToProps = state => {
   }
 }
 
-// Need a ref to dispatch for form actions
+// Set props for each dispatch action ref needed
 const mapDispatchToProps = dispatch => {
   return {
-
+    createReview: review => dispatch(createReview(review))
   }
 }
 

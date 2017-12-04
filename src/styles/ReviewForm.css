@@ -116,4 +116,5 @@
   color: #9b9b9b;
   font-size: 20px;
   cursor: pointer;
+  z-index: 2;
 }

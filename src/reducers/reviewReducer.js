@@ -17,6 +17,9 @@ const INITIAL_STATE = {
   }
 }
 
+/**
+ * Reducers receive paylods of information (actions) to update the state tree.
+ */
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case FETCH_REVIEWS: {
