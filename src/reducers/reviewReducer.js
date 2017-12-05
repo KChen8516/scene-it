@@ -58,6 +58,7 @@ export default function(state = INITIAL_STATE, action) {
       }
     }
     case 'CREATE_REVIEW_SUCCESS': {
+      console.log(action.payload);
       return {
         ...state,
         newReview: {

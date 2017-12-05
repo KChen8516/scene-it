@@ -15,6 +15,7 @@ class ReviewFormContainer extends Component {
   }
 
   submitReview(e) {
+    console.log('Form data being dispatched:', e);
     // Dispatch review data
     this.props.createReview(e);
   }

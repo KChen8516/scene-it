@@ -20,6 +20,10 @@
   color: #4a4a4a;
 }
 
+.LeftNav {
+  
+}
+
 .MenuIcon {
   padding-left: 10px;
 }
@@ -27,6 +31,10 @@
 .SearchIcon {
   padding-right: 10px;
 }
+
+/***************************/
+/* MDC Side Drawer         */
+/***************************/
 
 .SideDrawer {
   background-color: #2571af;

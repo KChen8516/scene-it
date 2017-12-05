@@ -110,7 +110,7 @@ class App extends Component {
           <header className="mdc-toolbar Navbar"
                   style={!isHomePage ? SubNavBar : null} >
             <div className="mdc-toolbar__row">
-              <section onClick={this.handleNavigation} className="mdc-toolbar__section mdc-toolbar__section--align-start">
+              <section onClick={this.handleNavigation} className="LeftNav mdc-toolbar__section mdc-toolbar__section--align-start">
                 {currentRoute === '/reviewform' ? (
                   <div className="BackButtonSection">
                     <a className="material-icons mdc-toolbar__icon--menu BackIcon">keyboard_arrow_left</a>
@@ -135,12 +135,15 @@ class App extends Component {
             </div>
           </header>) : (null)
         }
+        {/* Navigation Drawer */}
         <aside className="mdc-temporary-drawer mdc-typography">
           <nav className="SideDrawer mdc-temporary-drawer__drawer">
 
             <header className="mdc-temporary-drawer__header">
               <div className="SideDrawerHeader mdc-temporary-drawer__header-content">
-                <img src={ProfileImage} className="SideDrawerImage" alt="Side Drawer"/>
+                <Link to="/">
+                  <img src={ProfileImage} className="SideDrawerImage" alt="Side Drawer"/>
+                </Link>
                 <h1 className="mdc-typography--title">Ariana Grande</h1>
                 <p className="mdc-typography--caption">Member since 2017 | 5 Reviews</p>
               </div>
@@ -163,6 +166,7 @@ class App extends Component {
             </div>
           </nav>
         </aside>
+
         <div className="App-Content">
           <Switch>
             <Route exact path="/" component={HomeContainer}/>
@@ -174,8 +178,10 @@ class App extends Component {
             <Route component={PageNotFound} />
           </Switch>
         </div>
+
         <div className="App-Footer">
         </div>
+
       </div>
     );
   }

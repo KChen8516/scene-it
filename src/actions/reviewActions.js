@@ -13,6 +13,7 @@ export const FETCH_REVIEWS_ERROR = 'FETCH_REVIEWS_ERROR';
 
 // Leverage 'thunk' middleware for asynchronous dispatches
 export function createReview(review) {
+  console.log(review);
   const request = axios({
     method: 'post',
     data: qs.stringify(review),
@@ -23,7 +24,6 @@ export function createReview(review) {
   });
 
   return (dispatch, getState) => {
-    console.log(getState);
 
     dispatch({
       type: CREATE_REVIEW,
