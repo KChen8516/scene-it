@@ -11,12 +11,7 @@ class ReviewListContainer extends Component {
     this.props.getReviews();
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
-    console.log(this.props.reviews);
     return (
       <ReviewList reviews={this.props.reviews} />
     );
@@ -24,7 +19,6 @@ class ReviewListContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return {
     reviews: state.reviews.reviewList.reviews
   }

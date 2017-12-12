@@ -7,9 +7,14 @@ export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const CREATE_REVIEW_SUCCESS = 'CREATE_REVIEW_SUCCESS';
 export const CREATE_REVIEW_ERROR = 'CREATE_REVIEW_ERROR';
 // Fetch existing reviews
-export const FETCH_REVIEWS = 'FETCH_REVIEWS';
-export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
-export const FETCH_REVIEWS_ERROR = 'FETCH_REVIEWS_ERROR';
+export const FETCH_ALL_REVIEWS = 'FETCH_ALL_REVIEWS';
+export const FETCH_ALL_REVIEWS_SUCCESS = 'FETCH_ALL_REVIEWS_SUCCESS';
+export const FETCH_ALL_REVIEWS_ERROR = 'FETCH_ALL_REVIEWS_ERROR';
+// Fetch a sigle review
+export const FETCH_REVIEW = 'FETCH_REVIEW';
+export const FETCH_REVIEW_SUCCESS = 'FETCH_REVIEW_SUCCESS';
+export const FETCH_REVIEW_ERROR = 'FETCH_REVIEW_ERROR';
+
 
 // Leverage 'thunk' middleware for asynchronous dispatches
 export function createReview(review) {
@@ -44,10 +49,34 @@ export function createReview(review) {
   }
 }
 
-export function createReviewSuccess(text) {
-  return {
-    type: 'CREATE_REVIEW_SUCCESS',
-    payload: text
+// export function createReviewSuccess(text) {
+//   return {
+//     type: 'CREATE_REVIEW_SUCCESS',
+//     payload: text
+//   };
+// }
+
+export function fetchReview(id) {
+  console.log(id);
+  const req = axios({
+    method: 'get',
+    url:`http://localhost:8080/api/reviews/${id}`
+  });
+
+  console.log(req);
+
+  return dispatch => {
+
+    dispatch({type: FETCH_REVIEW, id});
+
+    req.then(
+      response => dispatch({
+        type: FETCH_REVIEW_SUCCESS,
+        payload: response.data
+      })
+    ).catch(
+      err => dispatch({type: FETCH_REVIEW_ERROR, err})
+    );
   };
 }
 
@@ -67,16 +96,16 @@ export function fetchReviews() {
   };
 }
 
-export function fetchReviewsSuccess(reviews) {
-  return {
-    type: FETCH_REVIEWS_SUCCESS,
+// If the body of the function only returns one obj, you can
+// rewrite the arrow function to return object notation instead (ES2015)
+export const fetchReviewsSuccess = reviews => ({
+    type: FETCH_ALL_REVIEWS_SUCCESS,
     payload: reviews
-  };
-}
+});
 
 export function fetchReviewsError(err) {
   return {
-    type: FETCH_REVIEWS_ERROR,
+    type: FETCH_ALL_REVIEWS_ERROR,
     payload: err
   };
 }
