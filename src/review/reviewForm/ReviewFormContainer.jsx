@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createReview } from '../actions/reviewActions';
+import { createReview } from '../../actions/reviewActions';
 
-import ReviewForm from '../components/ReviewForm';
+import ReviewForm from './ReviewForm';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
 

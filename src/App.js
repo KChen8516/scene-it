@@ -7,14 +7,16 @@ import {
 
 import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
+// Module Imports
+import { ReviewForm, Review } from './review';
+
 // Containers
 import HomeContainer from './containers/HomeContainer';
-import ReviewFormContainer from './containers/ReviewFormContainer';
+// import ReviewFormContainer from './containers/ReviewFormContainer';
 import LoginContainer from './containers/LoginContainer';
-import Register from './components/Register';
-import ReviewContainer from './review';
 import PageNotFound from './components/PageNotFound';
 import ReviewListContainer from './containers/ReviewListContainer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // CSS and assets
 import './App.css';
@@ -30,8 +32,7 @@ class App extends Component {
     super(props);
 
     console.log('App props', this.props);
-    // console.log(ReviewContainer2);
-    console.log(ReviewContainer);
+    console.log(ReviewForm);
 
     if (this.props.history.location.pathname === '/review') {
       console.log('Review Page');
@@ -177,17 +178,18 @@ class App extends Component {
           </nav>
         </aside>
 
-        <div className="App-Content">
-          <Switch>
-            <Route exact path="/" component={HomeContainer}/>
-            <Route exact path="/login" component={LoginContainer}/>
-            <Route exact path="/register" component={Register}/>
-            <Route path="/review/:id" component={ReviewContainer} />
-            <Route exact path="/reviewlist" component={ReviewListContainer}/>
-            <Route exact path="/reviewform" component={ReviewFormContainer}/>
-            <Route component={PageNotFound} />
-          </Switch>
-        </div>
+        <ErrorBoundary>
+          <div className="App-Content">
+            <Switch>
+              <Route exact path="/" component={HomeContainer}/>
+              <Route exact path="/login" component={LoginContainer}/>
+              <Route path="/review/:id" component={Review} />
+              <Route exact path="/reviewlist" component={ReviewListContainer}/>
+              <Route exact path="/reviewform" component={ReviewForm}/>
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
+        </ErrorBoundary>
 
         <div className="App-Footer">
         </div>

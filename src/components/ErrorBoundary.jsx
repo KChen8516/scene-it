@@ -13,6 +13,7 @@ export default class ErrorBoundary extends Component {
    * restrict component unmounting to only the error prone component in the tree.
    */
   componentDidCatch(error, info) {
+    console.log('An error was caught', error, info);
     this.setState({ hasError: true });
   }
 
@@ -20,7 +21,7 @@ export default class ErrorBoundary extends Component {
   // display the rest of the component tree.
   render() {
     if(this.state.hasError) {
-      return <h2>Oh shoot... Something has gone wrong!</h2>
+      return <h2>Oh shoot... Something has gone wrong with {this.props.text}!</h2>
     }
     return this.props.children;
   }

@@ -8,6 +8,7 @@ import { fetchReviews } from '../actions/reviewActions';
 class ReviewListContainer extends Component {
 
   componentWillMount() {
+    console.log('Fetching Reviews...');
     this.props.getReviews();
   }
 

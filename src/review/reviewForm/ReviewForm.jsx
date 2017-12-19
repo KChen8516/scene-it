@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import '../styles/ReviewForm.css';
-import ProfileImage from '../assets/ariana-grande.jpg';
+import CommentListForm from '../../components/CommentListForm';
+
+import './ReviewForm.css';
+import ProfileImage from '../../assets/ariana-grande.jpg';
 
 // Presentational control form component for reviews
 class ReviewForm extends Component {
@@ -10,27 +12,44 @@ class ReviewForm extends Component {
     super();
     this.state = {
       movieTitle: '',
-      items: [],
-      longReview: ''
+      pros: [],
+      cons: [],
+      other: []
     };
+  }
+
+  componentDidUpdate() {
+    console.log('ComponentDidUpdate', this.state);
   }
 
   handleMovieTitleChange(e) {
     this.setState({movieTitle: e.target.value});
   }
 
-  handleItemsChange(e) {
-    console.log('Typing Item');
-  }
-
-  handleLongReviewChange(e) {
-    this.setState({longReview: e.target.value})
-  }
-
   submitReview(e) {
     console.log('Submitting Review', this.state);
     let reviewData = this.state;
     this.props.submitReview(reviewData);
+  }
+
+  addProComment(newComment) {
+    console.log(newComment);
+    console.log(this.state);
+    this.setState({
+      pros: [...this.state.pros, newComment]
+    });
+  }
+
+  addConComment(newComment) {
+    this.setState({
+      cons: [...this.state.cons, newComment]
+    });
+  }
+
+  addOtherComment(newComment) {
+    this.setState({
+      other: [...this.state.other, newComment]
+    });
   }
 
   render() {
@@ -46,8 +65,9 @@ class ReviewForm extends Component {
                 <h1 className="mdc-typography--caption Username">Ariana Grande</h1>
               </div>
             </div>
+              {/* Submit Review Form */}
               <div className="ReviewForm mdc-layout-grid__cell mdc-form-field">
-                {/* Submit Review Form */}
+                
                   <div className="mdc-layout-grid__inner">
                     <div className="mdc-layout-grid__cell">
                       <div className="mdc-text-field">
@@ -60,31 +80,34 @@ class ReviewForm extends Component {
                         <div className="mdc-text-field__bottom-line"></div>
                       </div>
                     </div>
-                    <div className="mdc-layout-grid__cell">
-                      <div className="CommentField mdc-text-field">
-                        <i className="LikeIcon material-icons">done</i>
-                        <i className="DislikeIcon material-icons">clear</i>
-                        <input className="mdc-text-field__input"
-                               type="text" id="list-field"
-                               placeholder="What did you like/dislike?"
-                               value={this.state.items}
-                               onChange={this.handleItemsChange.bind(this)}
+
+                    <div className="mdc-layout-grid__cell--span-12-phone">
+                        <CommentListForm
+                            title="Pros"
+                            placeholder="I definitely loved..."
+                            handleCommentChange={this.addProComment.bind(this)}
+                            comments={this.state.pros}
                         />
-                      </div>
                     </div>
-                    <div className="AddSection mdc-layout-grid__cell">
-                      <i className="AddIcon material-icons">add_circle_outline</i>
-                      <p className="AddLabel">Add another like/dislike</p>
+
+                    <div className="mdc-layout-grid__cell--span-12-phone">
+                        <CommentListForm 
+                            title="Cons" 
+                            placeholder="I deeply hated..."
+                            handleCommentChange={this.addConComment.bind(this)}
+                            comments={this.state.cons}
+                        />
                     </div>
-                    <div className="LongReview mdc-text-field mdc-text-field--multiline mdc-text-field--fullwidth mdc-layout-grid__cell">
-                      <textarea className="mdc-text-field__input"
-                                placeholder="Write your movie review"
-                                rows="8" cols="30"
-                                aria-label="Full-Width multiline textfield"
-                                value={this.state.longReview}
-                                onChange={this.handleLongReviewChange.bind(this)}>
-                      </textarea>
+
+                    <div className="mdc-layout-grid__cell--span-12-phone">
+                        <CommentListForm 
+                            title="Other" 
+                            placeholder="I noticed..."
+                            handleCommentChange={this.addOtherComment.bind(this)}
+                            comments={this.state.other}
+                        />
                     </div>
+
                   </div>
               </div>
           </div>
