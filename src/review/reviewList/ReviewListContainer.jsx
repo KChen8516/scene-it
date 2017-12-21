@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import ReviewList from '../components/ReviewList';
+import ReviewList from './ReviewList';
 
 import { connect } from 'react-redux';
-import { fetchReviews } from '../actions/reviewActions';
+import { fetchReviews } from '../../actions/reviewActions';
 
 class ReviewListContainer extends Component {
 

@@ -1,6 +1,6 @@
 // Create a feature module entry point for Reviews
 // import ReviewContainer from './reviewItem/ReviewContainer';
-
+export { default as ReviewList } from './reviewList/ReviewListContainer';
 export { default as ReviewForm } from './reviewForm/ReviewFormContainer';
 export { default as Review }  from './reviewItem/ReviewContainer';
 

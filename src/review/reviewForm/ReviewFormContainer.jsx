@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { createReview } from '../../actions/reviewActions';
-
 import ReviewForm from './ReviewForm';
+
+import { connect } from 'react-redux';
+import { createReview } from '../../actions/reviewActions';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
 
@@ -12,6 +11,10 @@ class ReviewFormContainer extends Component {
   componentDidMount() {
     //Initialize MDC form elements
     new MDCTextField(document.querySelector('.mdc-text-field'));
+  }
+
+  componentWillReceiveProps(nextProps) {
+      console.log('ReactFormContainer componentWillReciveProps', nextProps );
   }
 
   submitReview(e) {
@@ -25,7 +28,7 @@ class ReviewFormContainer extends Component {
   }
 }
 
-// Might not be necessary since we don't need a ref to state
+// TODO: Fetch to populate edit form
 const mapStateToProps = state => {
   return {
 

@@ -36,6 +36,7 @@ export default function(prevState = INITIAL_STATE, action) {
       return {
         ...prevState,
         reviewList: {
+          ...prevState.reviewList,
           loading: true
         }
       }
@@ -45,6 +46,7 @@ export default function(prevState = INITIAL_STATE, action) {
       return {
         ...prevState,
         reviewList: {
+          ...prevState.reviewList,          
           loading: false,
           error: action.payload
         }
@@ -55,6 +57,7 @@ export default function(prevState = INITIAL_STATE, action) {
       return {
         ...prevState,
         reviewList: {
+          ...prevState.reviewList,          
           reviews: action.payload,
           loading: false,
           error: null

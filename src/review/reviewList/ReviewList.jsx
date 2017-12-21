@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link }  from 'react-router-dom';
 
-import '../styles/ReviewList.css'
-import ProfileImage from '../assets/ariana-grande.jpg';
+import './ReviewList.css'
+import ProfileImage from '../../assets/ariana-grande.jpg';
 
 const ReviewList = (props) => (
   <div className="ReviewListPage mdc-layout-grid">

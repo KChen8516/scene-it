@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import {
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom';
-
-import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
+import { Route, Switch, Link } from 'react-router-dom';
 
 // Module Imports
-import { ReviewForm, Review } from './review';
+import { ReviewForm, Review, ReviewList } from './review';
 
 // Containers
 import HomeContainer from './containers/HomeContainer';
-// import ReviewFormContainer from './containers/ReviewFormContainer';
 import LoginContainer from './containers/LoginContainer';
 import PageNotFound from './components/PageNotFound';
-import ReviewListContainer from './containers/ReviewListContainer';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // CSS and assets
 import './App.css';
 import ProfileImage from './assets/ariana-grande.jpg';
+import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
 class App extends Component {
 
@@ -32,7 +25,6 @@ class App extends Component {
     super(props);
 
     console.log('App props', this.props);
-    console.log(ReviewForm);
 
     if (this.props.history.location.pathname === '/review') {
       console.log('Review Page');
@@ -184,7 +176,7 @@ class App extends Component {
               <Route exact path="/" component={HomeContainer}/>
               <Route exact path="/login" component={LoginContainer}/>
               <Route path="/review/:id" component={Review} />
-              <Route exact path="/reviewlist" component={ReviewListContainer}/>
+              <Route exact path="/reviewlist" component={ReviewList}/>
               <Route exact path="/reviewform" component={ReviewForm}/>
               <Route component={PageNotFound} />
             </Switch>
