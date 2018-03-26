@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // Module Imports
 import { ReviewForm, Review, ReviewList } from './review';
+
+import Navbar from './navbar/Navbar';
+import SideDrawer from './sidedrawer/SideDrawer';
 
 // Containers
 import HomeContainer from './containers/HomeContainer';
@@ -12,7 +15,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // CSS and assets
 import './App.css';
-import ProfileImage from './assets/ariana-grande.jpg';
 import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
 class App extends Component {
@@ -24,7 +26,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    console.log('App props', this.props);
+    // console.log('App props', this.props);
 
     if (this.props.history.location.pathname === '/review') {
       console.log('Review Page');
@@ -33,6 +35,7 @@ class App extends Component {
     this.props.history.listen((location, action) => {
       console.log('route change');
       console.log(location, action);
+      this.drawer.open = false;
     })
 
     this.navBack = this.navBack.bind(this);
@@ -40,15 +43,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.navDrawer = new MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
-    // document.querySelector('.mdc-toolbar__icon--menu').addEventListener(
-    //   'click', () => this.navDrawer.open = true
-    // );
-    console.log('App.js component mounted.');
+    //console.log('App.js component mounted.');
+    this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
   }
 
   componentWillUnmount() {
-    console.log('App component unmounting...');
+    // console.log('App component unmounting...');
   }
 
   navBack() {
@@ -65,51 +65,51 @@ class App extends Component {
   }
 
   render() {
-    console.log('App.js component rendering');
-    console.log(this.props.location);
-    const currentRoute = this.props.location.pathname;
-    let isHomePage = true;
-    let NavbarTitle = null;
+    // console.log('App.js component rendering');
+    // console.log(this.props.location);
+    // const currentRoute = this.props.location.pathname;
+    // let isHomePage = true;
+    // let NavbarTitle = null;
 
-    const SubNavIcon = {
-      color: '#9b9b9b'
-    };
+    // const SubNavIcon = {
+    //   color: '#9b9b9b'
+    // };
 
-    const SubNavBar = {
-      background: 'rgba(203, 201, 201, 0.15)'
-    };
+    // const SubNavBar = {
+    //   background: 'rgba(203, 201, 201, 0.15)'
+    // };
 
-    if(currentRoute !== '/') {
-      isHomePage = false;
-      // Check for /review/:id routes
-      let checkRoute = /\/review\//.test(currentRoute);
-      console.log(checkRoute);
+    // if(currentRoute !== '/') {
+    //   isHomePage = false;
+    //   // Check for /review/:id routes
+    //   let checkRoute = /\/review\//.test(currentRoute);
+    //   console.log(checkRoute);
 
-      if(checkRoute) {
-        // currentRoute = '/review'
-      }
+    //   if(checkRoute) {
+    //     // currentRoute = '/review'
+    //   }
 
-      switch(currentRoute) {
-        case '/review':
-          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">Review</span>;
-          break;
-        case '/reviewform':
-          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">New Review</span>;
-          break;
-        case '/reviewlist':
-          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">My Reviews</span>;
-          break;
-        default:
-          NavbarTitle = <span className="mdc-typography--headline SubNavTitle">404</span>;
-          break;
-      }
-    } else {
-      NavbarTitle = <span className="mdc-typography--headline MainNavTitle">Scene It</span>;
-    }
+    //   switch(currentRoute) {
+    //     case '/review':
+    //       NavbarTitle = <span className="mdc-typography--headline SubNavTitle">Review</span>;
+    //       break;
+    //     case '/reviewform':
+    //       NavbarTitle = <span className="mdc-typography--headline SubNavTitle">New Review</span>;
+    //       break;
+    //     case '/reviewlist':
+    //       NavbarTitle = <span className="mdc-typography--headline SubNavTitle">My Reviews</span>;
+    //       break;
+    //     default:
+    //       NavbarTitle = <span className="mdc-typography--headline SubNavTitle">404</span>;
+    //       break;
+    //   }
+    // } else {
+    //   NavbarTitle = <span className="mdc-typography--headline MainNavTitle">Scene It</span>;
+    // }
 
     return (
       <div className="App">
-        {currentRoute !== '/login' ? (
+        {/* {currentRoute !== '/login' ? (
           <header className="mdc-toolbar Navbar"
                   style={!isHomePage ? SubNavBar : null} >
             <div className="mdc-toolbar__row">
@@ -137,38 +137,10 @@ class App extends Component {
               </section>
             </div>
           </header>) : (null)
-        }
-        {/* Navigation Drawer */}
-        <aside className="mdc-temporary-drawer mdc-typography">
-          <nav className="SideDrawer mdc-temporary-drawer__drawer">
+        } */}
 
-            <header className="mdc-temporary-drawer__header">
-              <div className="SideDrawerHeader mdc-temporary-drawer__header-content">
-                <Link to="/">
-                  <img src={ProfileImage} className="SideDrawerImage" alt="Side Drawer"/>
-                </Link>
-                <h1 className="mdc-typography--title">Ariana Grande</h1>
-                <p className="mdc-typography--caption">Member since 2017 | 5 Reviews</p>
-              </div>
-            </header>
-
-            <div className="SideDrawerMainNavigation">
-              <nav id="icon-with-text-demo" className="mdc-temporary-drawer__content mdc-list">
-                <Link to="/reviewform" className="SideDrawerNavLink mdc-list-item">
-                  <p>Write a Review</p>
-                </Link>
-                <Link to="/reviewlist" className="SideDrawerNavLink mdc-list-item mdc-typography--title">
-                  My Reviews
-                </Link>
-              </nav>
-            </div>
-            <div className="SideDrawerSubNavigation">
-              <Link to="/info" className="SideDrawerNavLink mdc-list-item mdc-typography--title">
-                App Info
-              </Link>
-            </div>
-          </nav>
-        </aside>
+        <Navbar />
+        <SideDrawer />
 
         <ErrorBoundary>
           <div className="App-Content">

@@ -1,0 +1,63 @@
+#DrawerBody {
+  background-color: #2571af;
+}
+
+#DrawerHeader {
+  flex-direction: column;
+  padding: 30px 16px 0 16px;
+  align-items: center;
+}
+
+#DrawerHeader h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: white;
+}
+
+#DrawerHeader p {
+  margin: 0;
+  padding-top: 10px;
+  font-size: 10px;
+  font-weight: 200;
+  color: white;
+}
+
+#DrawerImage {
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+.DrawerNavLink {
+  color: white !important;
+  font-weight: 200 !important;
+  font-size: 1.25rem !important;
+  padding-left: 30px !important;
+}
+
+#DrawerMainNav {
+  position: relative;
+  margin-top: 20px;
+}
+
+#DrawerMainNav::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  border-bottom: 1px solid #fff;
+}
+
+#DrawerMainNav::after {
+  content: '';
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  bottom: -10px;
+  border-bottom: 1px solid #fff;
+}
+
+#DrawerSubNav {
+  margin-top: 20px;  
+}
