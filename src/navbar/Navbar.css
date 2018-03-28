@@ -11,3 +11,8 @@
   font-weight: bold;
   font-size: 2rem;
 }
+
+.Navbar-Title--Sub {
+  font-size: 1.25rem;
+  font-weight: 200;
+}
