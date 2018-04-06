@@ -26,7 +26,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const SubNavBar = {background: 'rgba(203, 201, 201, 0.15)', color: '#4a4a4a'};
+        const SubNavBar = {background: '#f9f9f9', color: '#4a4a4a'};
         let currentRoute = this.props.routes.location.pathname;
         let NavbarTitle = '';
         switch(currentRoute) {

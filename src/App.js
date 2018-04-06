@@ -13,14 +13,14 @@ import PageNotFound from './components/PageNotFound';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // CSS and assets
+import '@material/layout-grid/dist/mdc.layout-grid.min.css';
 import './App.css';
 import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
 class App extends Component {
 
   /**
-   * React only provides 'this' context to lifecycle methods
-   * such as the constructor.
+   * React only provides 'this' context to lifecycle methods such as the constructor.
    */
   constructor(props) {
     super(props);
