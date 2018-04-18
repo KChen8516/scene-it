@@ -22,7 +22,7 @@ export function createReview(review) {
   const request = axios({
     method: 'post',
     data: qs.stringify(review),
-    url: 'http://localhost:8080/api/reviews',
+    url: 'http://localhost:5000/reviews',
     headers: [
       'Content-Type': 'application/x-www-form-urlencoded'
     ]
@@ -49,12 +49,18 @@ export function createReview(review) {
   }
 }
 
-// export function createReviewSuccess(text) {
-//   return {
-//     type: 'CREATE_REVIEW_SUCCESS',
-//     payload: text
-//   };
-// }
+export function createReviewAPI(review) {
+  console.log('Review API payload', review);
+  return axios({
+    method: 'post',
+    // data: qs.stringify(review),
+    data: review,
+    url: 'http://localhost:5000/reviews',
+    headers: [
+      'Content-Type': 'application/x-www-form-urlencoded'
+    ]
+  })
+}
 
 export function fetchReview(id) {
   console.log(id);

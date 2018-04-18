@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import ReviewForm from './ReviewForm';
+import ReviewFormik from './ReviewForm';
 
 import { connect } from 'react-redux';
 import { createReview } from '../../actions/reviewActions';
 
-import { MDCTextField } from '@material/textfield/dist/mdc.textfield';
 
 class ReviewFormContainer extends Component {
 
-  componentDidMount() {
-    //Initialize MDC form elements
-    new MDCTextField(document.querySelector('.mdc-text-field'));
-  }
-
   componentWillReceiveProps(nextProps) {
-      console.log('ReactFormContainer componentWillReciveProps', nextProps );
+      // console.log('ReactFormContainer componentWillReciveProps', nextProps );
   }
 
   submitReview(e) {
@@ -24,7 +18,7 @@ class ReviewFormContainer extends Component {
   }
 
   render() {
-      return <ReviewForm submitReview={this.submitReview.bind(this)}/>
+      return <ReviewFormik submitReview={this.submitReview.bind(this)}/>
   }
 }
 

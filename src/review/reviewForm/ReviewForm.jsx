@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { findIndex } from 'lodash';
 import { withFormik } from 'formik';
 
+import { MDCTextField } from '@material/textfield';
+// import { MDCFloatingLabel } from '@material/floating-label';
 import CommentListForm from '../../components/CommentListForm';
+import { createReviewAPI } from '../../actions/reviewActions';
 
 import '@material/textfield/dist/mdc.textfield.min.css';
 import './ReviewForm.css';
@@ -21,16 +24,35 @@ class ReviewForm extends Component {
     this.addConComment = this.addConComment.bind(this);
     this.addProComment = this.addProComment.bind(this);
     this.addOtherComment = this.addOtherComment.bind(this);
+    this.submitReview = this.submitReview.bind(this);
+  }
+
+  componentDidMount() {
+    this.titleField = new MDCTextField(document.querySelector('.mdc-text-field'));
+    // this.titleLabel = new MDCFloatingLabel(document.querySelector('.mdc-floating-label'));
   }
 
   componentDidUpdate() {
     // console.log('ComponentDidUpdate', this.state);
   }
 
+  componentWillReceiveProps(nextProps) {
+    // Reset the state of the rest of the form
+    if(nextProps.status === 'Success') {
+      this.setState({pros: []});
+      this.setState({cons: []});
+      this.setState({other: []});
+      nextProps.setStatus(null);
+    }
+  }
+
   submitReview(e) {
     console.log('Submitting Review', this.state);
-    let reviewData = this.state;
-    this.props.submitReview(reviewData);
+    // Map state values to form prop values for submission by Formik
+    this.props.values.pros = [...this.state.pros];
+    this.props.values.cons = [...this.state.cons];
+    this.props.values.other = [...this.state.other];
+    this.props.handleSubmit(e);
   }
 
   addProComment(newComment) {
@@ -109,7 +131,7 @@ class ReviewForm extends Component {
     return (
       <div className="ReviewFormPage">
         {/* Navbar button */}
-        {/* <span className="SubmitReviewForm" onClick={this.submitReview.bind(this)}>Save</span> */}
+        <span className="SubmitReviewForm" onClick={this.submitReview}>Save</span>
         <div className="mdc-layout-grid" style={{paddingTop:0}}>
           <div className="mdc-layout-grid__inner">
             {/* Submit Review Form */}
@@ -118,6 +140,9 @@ class ReviewForm extends Component {
                 <div className="mdc-text-field" style={{width:'100%'}}>
                   <input
                     type="text"
+                    name="movieTitle"
+                    onChange={this.props.handleChange}
+                    value={this.props.values.movieTitle}
                     className="mdc-text-field__input"
                     id="movie-title-field"
                   />
@@ -162,6 +187,7 @@ class ReviewForm extends Component {
                   />
               </div>
 
+              {!this.props.isSubmitting ? <span>Not submitted</span> : <span>Submitting...</span>}
             </div>
         </div>
       </div>
@@ -170,9 +196,30 @@ class ReviewForm extends Component {
 }
 
 const ReviewFormik = withFormik({
-  handleSubmit: values => {
+  mapPropsToValues: props => {
+    return {
+      movieTitle: '',
+    }
+  },
+  handleSubmit: (values, { props, setSubmitting, resetForm, setStatus }) => {
+    console.log(props);
     console.log(values);
+    
+    createReviewAPI(values).then(
+      success => {
+        console.log('Successfully submitted review.');
+        // Reset form prop values
+        resetForm();
+        // Set form status for component state
+        setStatus('Success');
+        setSubmitting(false);
+      },
+      error => {
+        console.log('Error');
+        // this.titleLabel.float(false);
+      }
+    );
   }
 })(ReviewForm);
 
-export default ReviewForm;
+export default ReviewFormik;
