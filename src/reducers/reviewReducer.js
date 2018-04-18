@@ -14,7 +14,6 @@ const INITIAL_STATE = {
     error: null
   },
   newReview: {
-    text: null,
     loading: false,
     error: null
   },
@@ -110,7 +109,6 @@ export default function(prevState = INITIAL_STATE, action) {
       return {
         ...prevState,
         newReview: {
-          text: action.payload,
           loading: false,
           error: null
         }
