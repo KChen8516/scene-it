@@ -56,20 +56,15 @@ export function createReviewAPI(review) {
     // data: qs.stringify(review),
     data: review,
     url: 'http://localhost:5000/reviews',
-    headers: [
-      'Content-Type': 'application/x-www-form-urlencoded'
-    ]
-  })
+    headers: ['Content-Type': 'application/x-www-form-urlencoded']
+  });
 }
 
 export function fetchReview(id) {
-  console.log(id);
   const req = axios({
     method: 'get',
-    url:`http://localhost:8080/api/reviews/${id}`
+    url:`http://localhost:5000/reviews/${id}`
   });
-
-  console.log(req);
 
   return dispatch => {
 
@@ -89,7 +84,7 @@ export function fetchReview(id) {
 export function fetchReviews() {
   const request = axios({
     method: 'get',
-    url: 'http://localhost:8080/api/reviews',
+    url: 'http://localhost:5000/reviews',
     headers: []
   });
 

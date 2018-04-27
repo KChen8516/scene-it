@@ -44,30 +44,16 @@
   font-weight: 200;
   color: rgba(51,51,51,0.5);
   font-size: 10px;
-  margin: 0 0 10px 10px;
+  margin: 4px 0 4px 10px;
+}
+
+#ReviewContent {
+  padding-bottom: 5px;
 }
 
 .ReviewListContent {
   text-decoration: none;
   color: #4a4a4a;
-  margin: 5px 0 5px 10px;
+  margin: 5px 0 10px 10px;
 }
 
-
-/* .ReviewItem {
-  margin-top: 20px;
-}
-
-.ReviewHeader {
-  padding-top: 5px;
-}
-
-.ReviewHeader h2 {
-  font-weight: 200;
-  color: rgba(51, 51, 51, 0.5);
-}
-
-.ReviewText {
-  font-weight: 200;
-  font-size: 14px;
-} */
