@@ -32,10 +32,12 @@ class Navbar extends Component {
         switch(currentRoute) {
             case '/': NavbarTitle = 'Scene It'; break;
             case '/reviewform': NavbarTitle = 'New Review'; break;
-            case '/review': NavbarTitle = 'Review'; break;
             case '/reviewlist': NavbarTitle = 'My Reviews'; break;
             default: NavbarTitle = '404'
         }
+        // Regex test for review/:id routes
+        if(/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
+        
         return (
             <header 
               className="Navbar mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall"

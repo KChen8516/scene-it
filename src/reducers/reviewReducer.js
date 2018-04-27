@@ -20,7 +20,9 @@ const INITIAL_STATE = {
   fetchedReview: {
     id: null,
     movieTitle: null,
-    reviewText: null,
+    pros: [],
+    cons: [],
+    other: [],
     loading: false,
     error: null
   },
@@ -81,7 +83,9 @@ export default function(prevState = INITIAL_STATE, action) {
           ...prevState.fetchedReview,
           loading: false,
           movieTitle: action.payload.movieTitle,
-          reviewText: action.payload.longReview
+          pros: action.payload.pros,
+          cons: action.payload.cons,
+          other: action.payload.other
         }
       }
     }

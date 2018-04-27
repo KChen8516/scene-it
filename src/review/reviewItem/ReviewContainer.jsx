@@ -6,32 +6,27 @@ import { fetchReview } from '../../actions/reviewActions';
 
 class ReviewContainer extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      stuff: {
-        id: 123, 
-        movieTitle: 'Moana', 
-        pros: [{id:111, text:'kewl'}, {id:999, text:'Ingredients: Corns, Vegetable Oil, (contains one or more of the following: Canada or Safflower Oil) and Salt.'}], 
-        cons: [{id:222,text:'Every so often'}], 
-        other: [{id:1234, text:`)($_!)@!#*@#5(*%!345@#$@$!_142#(2!45@#$3*`}, {id:123412, text:'LOREMIPSUMMECHANICALSALTVERITASIUMMAINVEINIUM'}, {id:5431324, text:'Twist up product. Apply to underarms only. Use daily for best results.'}]
-      }
-    }
-  }
-
   componentWillMount() {
     this.props.fetchReview(this.props.match.params.id);
   }
 
+  componentDidMount() {
+    // react-router v4 currently preserves scroll position between routes
+    window.scrollTo(0, 0);
+  }
+
   render() {
-    console.log(this.props);
-    return <Review review={this.props.reviewText} stuff={this.state.stuff}/>;
+    return <Review {...this.props} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    reviewText: state.reviews.fetchedReview.reviewText
+    movieTitle: state.reviews.fetchedReview.movieTitle,
+    pros: state.reviews.fetchedReview.pros,
+    cons: state.reviews.fetchedReview.cons,
+    other: state.reviews.fetchedReview.other,
+    error: state.reviews.fetchedReview.error,
   }
 }
 

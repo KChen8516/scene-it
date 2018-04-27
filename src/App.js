@@ -27,16 +27,11 @@ class App extends Component {
 
     // console.log('App props', this.props);
 
-    // if (this.props.history.location.pathname === '/review') {
-    //   console.log('Review Page');
-    // }
-
     this.props.history.listen((location, action) => {
       console.log('route change');
       console.log(location, action);
       this.drawer.open = false;
     })
-
   }
 
   componentDidMount() {
@@ -56,12 +51,6 @@ class App extends Component {
         return "App-Content";
       }
     }
-
-    // if(currentRoute !== '/') {
-    //   isHomePage = false;
-    //   // Check for /review/:id routes
-    //   let checkRoute = /\/review\//.test(currentRoute);
-    //   console.log(checkRoute);
 
     return (
       <div className="App">

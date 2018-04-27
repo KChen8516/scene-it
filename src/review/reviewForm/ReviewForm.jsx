@@ -187,7 +187,7 @@ class ReviewForm extends Component {
                   />
               </div>
 
-              {!this.props.isSubmitting ? <span>Not submitted</span> : <span>Submitting...</span>}
+              {/* {!this.props.isSubmitting ? <span>Not submitted</span> : <span>Submitting...</span>} */}
             </div>
         </div>
       </div>
@@ -201,10 +201,7 @@ const ReviewFormik = withFormik({
       movieTitle: '',
     }
   },
-  handleSubmit: (values, { props, setSubmitting, resetForm, setStatus }) => {
-    console.log(props);
-    console.log(values);
-    
+  handleSubmit: (values, { props, setSubmitting, resetForm, setStatus }) => {    
     createReviewAPI(values).then(
       success => {
         console.log('Successfully submitted review.');
