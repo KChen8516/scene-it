@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Module Imports
-import { ReviewForm, Review, ReviewList } from './review';
+import { ReviewForm, Review, ReviewList, ReviewEdit } from './review';
 import { Navbar } from './navbar';
 import { SideDrawer } from './sidedrawer';
 
@@ -63,6 +63,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomeContainer}/>
               <Route exact path="/login" component={LoginContainer}/>
+              <Route path="/review/edit/:id" component={ReviewEdit} />
               <Route path="/review/:id" component={Review} />
               <Route exact path="/reviewlist" component={ReviewList}/>
               <Route exact path="/reviewform" component={ReviewForm}/>

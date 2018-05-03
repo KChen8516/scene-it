@@ -22,6 +22,7 @@ class ReviewContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    id: state.reviews.fetchedReview.id,
     movieTitle: state.reviews.fetchedReview.movieTitle,
     pros: state.reviews.fetchedReview.pros,
     cons: state.reviews.fetchedReview.cons,

@@ -82,6 +82,7 @@ export default function(prevState = INITIAL_STATE, action) {
         fetchedReview: {
           ...prevState.fetchedReview,
           loading: false,
+          id: action.payload._id,
           movieTitle: action.payload.movieTitle,
           pros: action.payload.pros,
           cons: action.payload.cons,

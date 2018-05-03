@@ -60,6 +60,16 @@ export function createReviewAPI(review) {
   });
 }
 
+export function updateReview(review) {
+  console.log('Update Review payload', review);
+  return axios({
+    method: 'put',
+    data: review,
+    url:`http://localhost:5000/reviews/edit/${review.id}`,
+    headers: ['Content-Type': 'application/x-www-form-urlencoded']
+  });
+}
+
 export function fetchReview(id) {
   const req = axios({
     method: 'get',

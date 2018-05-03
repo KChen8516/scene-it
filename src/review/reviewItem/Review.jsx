@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './Review.css';
 import MoviePoster from '../../assets/wall-e.jpg';
@@ -19,7 +19,9 @@ const Review = (props) => (
 
       <div className="PosterSection mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <img className="PosterImage" src={MoviePoster} alt="Wall-e" />
-        <img className="EditReviewIcon" src={EditIcon} alt="Edit Icon" />
+        <Link to={`/review/edit/${props.id}`}>
+          <img className="EditReviewIcon" src={EditIcon} alt="Edit Icon" />
+        </Link>
         <div className="MovieTitleSection">
           <h1 className="MovieTitleText mdc-typography--headline">{props.movieTitle}</h1>
         </div>

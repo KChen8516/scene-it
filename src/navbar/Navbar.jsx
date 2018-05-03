@@ -18,7 +18,8 @@ class Navbar extends Component {
     }
 
     handleNavigation() {
-        if(this.props.routes.location.pathname === '/reviewform') {
+        let currentRoute = this.props.routes.location.pathname;
+        if(currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute)) {
             this.props.routes.history.goBack();
         } else {
             this.drawer.open = true;
@@ -35,8 +36,9 @@ class Navbar extends Component {
             case '/reviewlist': NavbarTitle = 'My Reviews'; break;
             default: NavbarTitle = '404'
         }
-        // Regex test for review/:id routes
+        // Regex test for review/:id and review/edit/:id routes
         if(/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
+        if(/\/review\/edit/.test(currentRoute)) NavbarTitle = 'Edit Review';
         
         return (
             <header 
@@ -45,7 +47,7 @@ class Navbar extends Component {
             >
                 <div className="mdc-toolbar__row">
                     <section className="mdc-toolbar__section mdc-toolbar__section--align-start mdc-toolbar__section--shrink-to-fit" onClick={this.handleNavigation}>
-                        {currentRoute === '/reviewform' ? (
+                        {currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute) ? (
                             <div style={{display:'flex', alignItems:'center'}}>
                                 <a className="material-icons mdc-toolbar__icon--menu">keyboard_arrow_left</a>
                                 <span style={{marginLeft:-5, fontWeight:200}}>Back</span>
@@ -65,7 +67,7 @@ class Navbar extends Component {
                         }
                     </section>
                     <section className="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit">
-                        {currentRoute === '/reviewform' ? (
+                        {currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute) ? (
                             <div style={{height:20,width:50}}></div>
                         ):(
                             <a
