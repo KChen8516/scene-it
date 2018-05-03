@@ -3,7 +3,6 @@ import { findIndex } from 'lodash';
 import { withFormik } from 'formik';
 
 import { MDCTextField } from '@material/textfield';
-// import { MDCFloatingLabel } from '@material/floating-label';
 import CommentListForm from '../../components/CommentListForm';
 import { createReviewAPI } from '../../actions/reviewActions';
 
@@ -15,7 +14,7 @@ class ReviewForm extends Component {
 
   constructor(props) {
     super(props);
-    console.log('ReviewForm props', this.props);
+    // console.log('ReviewForm props', this.props);
     this.state = {
       pros: [],
       cons: [],
@@ -29,7 +28,6 @@ class ReviewForm extends Component {
 
   componentDidMount() {
     this.titleField = new MDCTextField(document.querySelector('.mdc-text-field'));
-    // this.titleLabel = new MDCFloatingLabel(document.querySelector('.mdc-floating-label'));
   }
 
   componentDidUpdate() {
@@ -213,7 +211,6 @@ const ReviewFormik = withFormik({
       },
       error => {
         console.log('Error');
-        // this.titleLabel.float(false);
       }
     );
   }
