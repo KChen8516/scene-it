@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import setAuthToken from './utils/setAuthToken';
 
 // Module Imports
 import { ReviewForm, Review, ReviewList, ReviewEdit } from './review';
 import { Navbar } from './navbar';
 import { SideDrawer } from './sidedrawer';
+import { Home } from './home';
 
 // Containers
-import HomeContainer from './containers/HomeContainer';
-import LoginContainer from './containers/LoginContainer';
 import PageNotFound from './components/PageNotFound';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -27,6 +29,26 @@ class App extends Component {
 
     // console.log('App props', this.props);
 
+    // Check for token
+    if(localStorage.googleToken) {
+      // Set auth token header
+      setAuthToken(localStorage.googleToken);
+      // Grab the user from firebase
+      firebase.auth().onAuthStateChanged(res => {
+        // console.log(res);
+        if(res) {
+          const { displayName, email, photoURL, uid } = res.providerData[0];
+          const user = {
+            displayName: displayName,
+            email: email,
+            image: photoURL,
+            googleID: uid 
+          }
+          this.props.setCurrentUser(user);
+        }
+      });
+    }
+
     this.props.history.listen((location, action) => {
       console.log('route change');
       console.log(location, action);
@@ -41,6 +63,10 @@ class App extends Component {
 
   componentWillUnmount() {
     // console.log('App component unmounting...');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps);
   }
 
   render() {
@@ -61,8 +87,7 @@ class App extends Component {
         <ErrorBoundary>
           <div className={getClassNames()}>
             <Switch>
-              <Route exact path="/" component={HomeContainer}/>
-              <Route exact path="/login" component={LoginContainer}/>
+              <Route exact path="/" component={Home}/>
               <Route path="/review/edit/:id" component={ReviewEdit} />
               <Route path="/review/:id" component={Review} />
               <Route exact path="/reviewlist" component={ReviewList}/>

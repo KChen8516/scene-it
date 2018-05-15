@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HomeCarousel from '../components/HomeCarousel';
+import HomeCarousel from './HomeCarousel';
 
 declare var slick;
 declare var $;

@@ -1,28 +1,38 @@
 import {
-  FETCH_USER,
-  FETCH_USER_FULFILLED,
-  FETCH_USER_ERROR
+  USER_LOGIN,
+  USER_LOGIN_ERROR,
+  USER_LOGIN_SUCCESS,
+  SET_CURRENT_USER
 } from '../actions/userActions';
 
 const initialState = {
-  user: {},
+  profile: {},
+  isAuthenticated: false,
   loading: false,
   error: null
 }
 
 export default function(state = initialState, action) {
   switch(action.type) {
-    case FETCH_USER: {
+    case USER_LOGIN: {
       return {...state, loading: true}
     }
-    case FETCH_USER_ERROR: {
+    case USER_LOGIN_ERROR: {
       return {...state, loading: false, error: action.payload}
     }
-    case FETCH_USER_FULFILLED: {
+    case USER_LOGIN_SUCCESS: {
       return {
         ...state,
+        isAuthenticated: true,
         loading: false,
-        user: action.payload
+        profile: action.payload
+      }
+    }
+    case SET_CURRENT_USER: {
+      return { 
+        ...state,
+        isAuthenticated: true,
+        profile: action.payload
       }
     }
     default:
