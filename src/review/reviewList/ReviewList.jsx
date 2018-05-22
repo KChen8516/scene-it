@@ -3,15 +3,14 @@ import { Link }  from 'react-router-dom';
 
 import '@material/card/dist/mdc.card.min.css';
 import './ReviewList.css'
-import ProfileImage from '../../assets/ariana-grande.jpg';
 
 const ReviewList = (props) => (
   <div className="ReviewListPage mdc-layout-grid">
     <div className="mdc-layout-grid__inner">
     
       <div className="ProfileHeader mdc-layout-grid__cell--span-12">
-        <img src={ProfileImage} alt="header"/>
-        <h3>Ariana Grande</h3>
+        <img src={props.user.image} alt="header"/>
+        <h3>{props.user.displayName}</h3>
         <p>Member since 2017 | {props.reviews.length} Reviews</p>
       </div>
 

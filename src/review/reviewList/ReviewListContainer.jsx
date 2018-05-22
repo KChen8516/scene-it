@@ -3,30 +3,31 @@ import React, { Component } from 'react';
 import ReviewList from './ReviewList';
 
 import { connect } from 'react-redux';
-import { fetchReviews } from '../../actions/reviewActions';
+import { fetchReviewsByUser } from '../../actions/reviewActions';
 
 class ReviewListContainer extends Component {
 
   componentWillMount() {
-    this.props.getReviews();
+    this.props.getReviewsById(this.props.user._id);
   }
 
   render() {
     return (
-      <ReviewList reviews={this.props.reviews} />
+      <ReviewList {...this.props} />
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    reviews: state.reviews.reviewList.reviews
+    user: state.user.profile,
+    reviews: state.reviews.reviews
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getReviews: () => dispatch(fetchReviews())
+    getReviewsById: id => dispatch(fetchReviewsByUser(id))
   };
 }
 

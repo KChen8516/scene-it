@@ -2,7 +2,8 @@ import {
   USER_LOGIN,
   USER_LOGIN_ERROR,
   USER_LOGIN_SUCCESS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  LOGOUT_USER
 } from '../actions/userActions';
 
 const initialState = {
@@ -33,6 +34,13 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         profile: action.payload
+      }
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        isAuthenticated: false,
+        profile: {}
       }
     }
     default:

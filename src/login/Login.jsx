@@ -4,6 +4,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import setAuthToken from '../utils/setAuthToken';
 
+const logoutStyle = {
+    color: 'white',
+    fontWeight: 200,
+    fontSize: '1.25rem',
+    paddingLeft: 30
+};
+
 // Configure Firebase
 const config = {
     apiKey: "AIzaSyCsJ30UuM45qAWTSLkf-ug1Wof1hBiTONc",
@@ -17,14 +24,16 @@ firebase.initializeApp(config);
 
 class Login extends Component {
 
-    state = {
-        isSignedIn: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.logoutUser = this.logoutUser.bind(this);
+    }
 
     // Configure FirebaseUI
     uiConfig = {
         signInFlow: 'redirect',
-        signInSuccessUrl: '/',
+        signInSuccessUrl: '/reviewlist',
         signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
         callbacks: {
             // Avoid redirects after sign-in.
@@ -48,25 +57,55 @@ class Login extends Component {
                     email: googleProfile.email,
                     image: googleProfile.picture
                 }
-
+                
                 this.props.login(user);
+                return true;
             }
         }
     };
 
-    // Listen to the Firebase Auth state and set the local state.
-    componentDidMount() {
-        this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-            (user) => this.setState({isSignedIn: !!user})
-        );
-    }
 
-    componentWillUnmount() {
-        this.unregisterAuthObserver();
+    state = {
+        isSignedIn: false
+    };
+
+
+    // Listen to the Firebase Auth state and set the local state.
+    // componentDidMount() {
+    //     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+    //         (user) => {
+    //             console.log('Still listening?', user);
+    //             // this.setState({isSignedIn: !!user})
+    //         }
+    //     );
+    // }
+
+    // componentWillUnmount() {
+    //     this.unregisterAuthObserver();
+    // }
+
+    logoutUser() {
+        console.log('Logging out.');
+        firebase.auth().signOut().then(() =>{
+            console.log('User logged out?');
+            this.props.logout();
+            this.props.history.push('/');
+        });
     }
 
     render() {
-        return <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+        // console.log('Login props', this.props);
+        if(this.props.isLoggedIn) {
+            console.log('Rendering logout button');
+            return (
+                <div className="mdc-list-item" style={logoutStyle}>
+                    <span onClick={this.logoutUser}>Logout</span>
+                </div>
+            )
+        } else {
+            console.log('Rendering firebaseUI..');
+            return <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+        }
     }
 }
 

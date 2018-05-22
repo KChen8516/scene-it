@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './Review.css';
 import MoviePoster from '../../assets/wall-e.jpg';
-import ProfileImage from '../../assets/ariana-grande.jpg';
 import EditIcon from '../../assets/icon-edit.svg';
 
 const ItemStyle = {
@@ -11,6 +10,11 @@ const ItemStyle = {
   lineHeight: 'normal',
   paddingLeft: 0,
   paddingRight: 0
+}
+
+const defaultMessage = {
+  fontSize: 14,
+  lineHeight: 'normal'
 }
 
 const Review = (props) => (
@@ -30,10 +34,10 @@ const Review = (props) => (
       <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <div className="mdc-layout-grid__inner">
           <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-1">
-            <img className="ProfileBadge" src={ProfileImage} alt="profile" />
+            <img className="ProfileBadge" src={props.user.image} alt="profile" />
           </div>
           <div id="ReviewInfo" className="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
-            <p id="ReviewUsername" className="mdc-typography--body2">Ariana Grande</p>
+            <p id="ReviewUsername" className="mdc-typography--body2">{props.user.displayName}</p>
             <p id="ReviewPublish" className="mdc-typography--caption">Published on 09/20/17</p>
           </div>
         </div>
@@ -49,7 +53,7 @@ const Review = (props) => (
                 {pro.text}
               </li>
             )}
-          </ul> : <p>Nothing good to say.</p>
+          </ul> : <p style={defaultMessage}>Nothing good to say.</p>
         }
       </div>
 
@@ -64,7 +68,7 @@ const Review = (props) => (
                 {con.text}
               </li>
             )}
-          </ul> : <p>Nothing bad to say.</p>
+          </ul> : <p style={defaultMessage}>Nothing bad to say.</p>
         }
       </div>
 
@@ -79,7 +83,7 @@ const Review = (props) => (
                   {other.text}
                 </li>
               )}
-            </ul> : <p>Nothing.</p>
+            </ul> : <p style={defaultMessage}>Nothing.</p>
           }
       </div>
 
