@@ -18,14 +18,13 @@ class ReviewFormContainer extends Component {
   }
 
   render() {
-      return <ReviewFormik submitReview={this.submitReview.bind(this)}/>
+      return <ReviewFormik submitReview={this.submitReview.bind(this)} user={this.props.user}/>
   }
 }
 
-// TODO: Fetch to populate edit form
 const mapStateToProps = state => {
   return {
-
+      user: state.user.profile,
   }
 }
 

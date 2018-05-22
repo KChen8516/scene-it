@@ -13,6 +13,7 @@ import { Home } from './home';
 // Containers
 import PageNotFound from './components/PageNotFound';
 import ErrorBoundary from './components/ErrorBoundary';
+import PrivateRoute from './components/PrivateRoute';
 
 // CSS and assets
 import '@material/layout-grid/dist/mdc.layout-grid.min.css';
@@ -31,6 +32,7 @@ class App extends Component {
 
     // Check for token
     if(localStorage.googleToken) {
+      console.log('Local token found');
       // Set auth token header
       setAuthToken(localStorage.googleToken);
       // Grab the user from firebase
@@ -44,21 +46,22 @@ class App extends Component {
             image: photoURL,
             googleID: uid 
           }
-          this.props.setCurrentUser(user);
+          this.props.login(user);
+          // this.props.setCurrentUser(user);
         }
       });
     }
-
-    this.props.history.listen((location, action) => {
-      console.log('route change');
-      console.log(location, action);
-      this.drawer.open = false;
-    })
   }
 
   componentDidMount() {
     //console.log('App.js component mounted.');
     this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
+
+    this.props.history.listen((location, action) => {
+      // console.log('route change');
+      // console.log(location, action);
+      this.drawer.open = false;
+    });
   }
 
   componentWillUnmount() {
@@ -82,16 +85,16 @@ class App extends Component {
       <div className="App">
  
         <Navbar routes={this.props}/>
-        <SideDrawer />
+        <SideDrawer history={this.props.history}/>
 
         <ErrorBoundary>
           <div className={getClassNames()}>
             <Switch>
+              <PrivateRoute path="/review/edit/:id" component={ReviewEdit} />
+              <PrivateRoute exact path="/reviewlist" component={ReviewList}/>
+              <PrivateRoute exact path="/reviewform" component={ReviewForm}/>
               <Route exact path="/" component={Home}/>
-              <Route path="/review/edit/:id" component={ReviewEdit} />
               <Route path="/review/:id" component={Review} />
-              <Route exact path="/reviewlist" component={ReviewList}/>
-              <Route exact path="/reviewform" component={ReviewForm}/>
               <Route component={PageNotFound} />
             </Switch>
           </div>

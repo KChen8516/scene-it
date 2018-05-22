@@ -4,7 +4,10 @@ import {
   FETCH_ALL_REVIEWS_ERROR,
   FETCH_REVIEW,
   FETCH_REVIEW_SUCCESS,
-  FETCH_REVIEW_ERROR
+  FETCH_REVIEW_ERROR,
+  GET_USER_REVIEWS,
+  GET_USER_REVIEWS_SUCCESS,
+  GET_USER_REVIEWS_ERROR
 } from '../actions/reviewActions';
 
 const INITIAL_STATE = {
@@ -26,6 +29,9 @@ const INITIAL_STATE = {
     loading: false,
     error: null
   },
+  reviews: [],
+  loading: false,
+  errors: []
 };
 
 /**
@@ -125,8 +131,31 @@ export default function(prevState = INITIAL_STATE, action) {
         ...prevState,
         newReview: {
           loading: false,
-          error: action.paylod
+          error: action.payload
         }
+      }
+    }
+
+    case GET_USER_REVIEWS: {
+      return {
+        ...prevState,
+        loading: true
+      }
+    }
+
+    case GET_USER_REVIEWS_SUCCESS: {
+      return {
+        ...prevState,
+        reviews: action.payload,
+        loading: false
+      }
+    }
+
+    case GET_USER_REVIEWS_ERROR: {
+      return {
+        ...prevState,
+        loading: false,
+        errors: action.payload
       }
     }
 

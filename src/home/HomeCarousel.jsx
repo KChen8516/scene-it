@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import '../styles/HomeCarousel.css';
+import './HomeCarousel.css';
 import EditIcon from '../assets/icon-edit.svg';
 
 const HomeCarousel = () => {

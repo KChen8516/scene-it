@@ -1,13 +1,15 @@
 // Login user
 import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
 
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_ERROR = 'USER_LOGIN_ERROR';
 export const USER_LOGIN = 'USER_LOGIN';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 export function loginUser(user) {
-  
+  console.log('Calling loginUser...');
   const request = axios({
       method: 'post',
       data: user,
@@ -32,5 +34,17 @@ export const setCurrentUser = user => {
   return {
     type: SET_CURRENT_USER,
     payload: user
+  }
+}
+
+export const logoutUser = () => {
+  console.log('Removing user and token.');
+  // Remove token from localStorage
+  localStorage.removeItem('googleToken');
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to {} which should set isAuthenticated to false
+  return {
+    type: LOGOUT_USER
   }
 }

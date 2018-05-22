@@ -1,6 +1,14 @@
+import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { loginUser } from '../actions/userActions';
 import SideDrawer from './SideDrawer';
+
+class SideDrawerContainer extends Component {
+    render() {
+        // console.log('Sidedrawer props', this.props);
+        return <SideDrawer {...this.props}/>
+    }
+}
 
 const mapStateToProps = state => {
     return {
@@ -15,4 +23,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(SideDrawerContainer);

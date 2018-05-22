@@ -50,6 +50,7 @@ class ReviewForm extends Component {
     this.props.values.pros = [...this.state.pros];
     this.props.values.cons = [...this.state.cons];
     this.props.values.other = [...this.state.other];
+    this.props.values._id = this.props.user._id;
     this.props.handleSubmit(e);
   }
 
@@ -126,6 +127,7 @@ class ReviewForm extends Component {
   }
 
   render() {
+    console.log('ReviewForm props', this.props);
     return (
       <div className="ReviewFormPage">
         {/* Navbar button */}

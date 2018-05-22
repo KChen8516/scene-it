@@ -10,10 +10,14 @@ export const CREATE_REVIEW_ERROR = 'CREATE_REVIEW_ERROR';
 export const FETCH_ALL_REVIEWS = 'FETCH_ALL_REVIEWS';
 export const FETCH_ALL_REVIEWS_SUCCESS = 'FETCH_ALL_REVIEWS_SUCCESS';
 export const FETCH_ALL_REVIEWS_ERROR = 'FETCH_ALL_REVIEWS_ERROR';
-// Fetch a sigle review
+// Fetch a single review
 export const FETCH_REVIEW = 'FETCH_REVIEW';
 export const FETCH_REVIEW_SUCCESS = 'FETCH_REVIEW_SUCCESS';
 export const FETCH_REVIEW_ERROR = 'FETCH_REVIEW_ERROR';
+// Get reviews for a User
+export const GET_USER_REVIEWS = 'GET_USER_REVIEWS';
+export const GET_USER_REVIEWS_SUCCESS = 'GET_USER_REVIEWS_SUCCESS';
+export const GET_USER_REVIEWS_ERROR = 'GET_USER_REVIEWS_ERROR';
 
 
 // Leverage 'thunk' middleware for asynchronous dispatches
@@ -90,6 +94,24 @@ export function fetchReview(id) {
     );
   };
 }
+
+export const fetchReviewsByUser = id => dispatch => {
+  dispatch({type: GET_USER_REVIEWS});
+  axios
+    .get(`http://localhost:5000/reviews/user/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_USER_REVIEWS_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => 
+      dispatch({
+        type: GET_USER_REVIEWS_SUCCESS,
+        payload: err.response.data
+      })
+    );
+};
 
 export function fetchReviews() {
   const request = axios({
