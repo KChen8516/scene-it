@@ -47,3 +47,6 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export const getUserProfile = state => state.profile;
+export const getIsAuthenticated = state => state.isAuthenticated;

@@ -1,11 +1,7 @@
 import axios from 'axios';
 // query string lib for encoding POST requests
-import qs from 'qs';
+// import qs from 'qs';
 
-// Create a new movie review
-export const CREATE_REVIEW = 'CREATE_REVIEW';
-export const CREATE_REVIEW_SUCCESS = 'CREATE_REVIEW_SUCCESS';
-export const CREATE_REVIEW_ERROR = 'CREATE_REVIEW_ERROR';
 // Fetch existing reviews
 export const FETCH_ALL_REVIEWS = 'FETCH_ALL_REVIEWS';
 export const FETCH_ALL_REVIEWS_SUCCESS = 'FETCH_ALL_REVIEWS_SUCCESS';
@@ -19,40 +15,7 @@ export const GET_USER_REVIEWS = 'GET_USER_REVIEWS';
 export const GET_USER_REVIEWS_SUCCESS = 'GET_USER_REVIEWS_SUCCESS';
 export const GET_USER_REVIEWS_ERROR = 'GET_USER_REVIEWS_ERROR';
 
-
 // Leverage 'thunk' middleware for asynchronous dispatches
-export function createReview(review) {
-  console.log(review);
-  const request = axios({
-    method: 'post',
-    data: qs.stringify(review),
-    url: 'http://localhost:5000/reviews',
-    headers: [
-      'Content-Type': 'application/x-www-form-urlencoded'
-    ]
-  });
-
-  return (dispatch, getState) => {
-
-    dispatch({
-      type: CREATE_REVIEW,
-      review
-    });
-
-    request.then(
-      response => dispatch({
-        type: CREATE_REVIEW_SUCCESS,
-        payload: response.data
-      })
-    ).catch(
-      error => dispatch({
-        type: CREATE_REVIEW_ERROR,
-        error
-      })
-    )
-  }
-}
-
 export function createReviewAPI(review) {
   console.log('Review API payload', review);
   return axios({

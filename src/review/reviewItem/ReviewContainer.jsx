@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Review from './Review';
 import { fetchReview } from '../../actions/reviewActions';
@@ -18,6 +19,10 @@ class ReviewContainer extends Component {
   render() {
     return <Review {...this.props} />;
   }
+}
+
+ReviewContainer.propTypes = {
+  user: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => {

@@ -9,7 +9,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 export function loginUser(user) {
-  console.log('Calling loginUser...');
+  // console.log('Calling loginUser...');
   const request = axios({
       method: 'post',
       data: user,

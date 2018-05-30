@@ -16,10 +16,6 @@ const INITIAL_STATE = {
     loading: false,
     error: null
   },
-  newReview: {
-    loading: false,
-    error: null
-  },
   fetchedReview: {
     id: null,
     movieTitle: null,
@@ -107,35 +103,6 @@ export default function(prevState = INITIAL_STATE, action) {
       }
     }
 
-    case 'CREATE_REVIEW': {
-      return {
-        ...prevState,
-        newReview: {
-          loading: true
-        }
-      }
-    }
-
-    case 'CREATE_REVIEW_SUCCESS': {
-      return {
-        ...prevState,
-        newReview: {
-          loading: false,
-          error: null
-        }
-      }
-    }
-
-    case 'CREATE_REVIEW_ERROR': {
-      return {
-        ...prevState,
-        newReview: {
-          loading: false,
-          error: action.payload
-        }
-      }
-    }
-
     case GET_USER_REVIEWS: {
       return {
         ...prevState,
@@ -163,3 +130,6 @@ export default function(prevState = INITIAL_STATE, action) {
       return prevState;
   }
 }
+
+// State selectors
+export const getUserReviews = (state) => state.reviews;

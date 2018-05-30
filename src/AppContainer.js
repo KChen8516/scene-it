@@ -8,11 +8,7 @@ function mapStateToProps(state, ownProps) {
   return {};
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // setCurrentUser: user => dispatch(setCurrentUser(user)),
-    login: user => dispatch(loginUser(user)),
-  };
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(
+  mapStateToProps, 
+  { login: loginUser }
+)(App));
