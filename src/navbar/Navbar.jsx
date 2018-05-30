@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { MDCToolbar } from '@material/toolbar';
 import { MDCTemporaryDrawer } from '@material/drawer';
@@ -19,7 +20,10 @@ class Navbar extends Component {
 
     handleNavigation() {
         let currentRoute = this.props.routes.location.pathname;
-        if(currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute)) {
+        if(currentRoute === '/reviewform' ||
+           /\/review\/edit/.test(currentRoute) ||
+           currentRoute === '/info'
+        ) {
             this.props.routes.history.goBack();
         } else {
             this.drawer.open = true;
@@ -34,11 +38,21 @@ class Navbar extends Component {
             case '/': NavbarTitle = 'Scene It'; break;
             case '/reviewform': NavbarTitle = 'New Review'; break;
             case '/reviewlist': NavbarTitle = 'My Reviews'; break;
+            case '/info': NavbarTitle = 'App Info'; break;
             default: NavbarTitle = '404'
         }
         // Regex test for review/:id and review/edit/:id routes
         if(/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
         if(/\/review\/edit/.test(currentRoute)) NavbarTitle = 'Edit Review';
+
+        let showBackButton = false;
+
+        if (currentRoute === '/reviewform' ||
+            /\/review\/edit/.test(currentRoute) ||
+            currentRoute === '/info'
+        ) {
+            showBackButton = true
+        } else {showBackButton = false}
         
         return (
             <header 
@@ -47,7 +61,7 @@ class Navbar extends Component {
             >
                 <div className="mdc-toolbar__row">
                     <section className="mdc-toolbar__section mdc-toolbar__section--align-start mdc-toolbar__section--shrink-to-fit" onClick={this.handleNavigation}>
-                        {currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute) ? (
+                        {showBackButton ? (
                             <div style={{display:'flex', alignItems:'center'}}>
                                 <a className="material-icons mdc-toolbar__icon--menu">keyboard_arrow_left</a>
                                 <span style={{marginLeft:-5, fontWeight:200}}>Back</span>
@@ -67,13 +81,15 @@ class Navbar extends Component {
                         }
                     </section>
                     <section className="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit">
-                        {currentRoute === '/reviewform' || /\/review\/edit/.test(currentRoute) ? (
+                        {showBackButton ? (
                             <div style={{height:20,width:50}}></div>
                         ):(
-                            <a
-                              className="material-icons mdc-toolbar__icon--menu"
-                              style={{paddingRight: 10}}
-                            >search</a>
+                            <Link to="/reviewform">
+                                <i
+                                  className="material-icons mdc-toolbar__icon--menu"
+                                  style={{paddingRight: 10, color: 'white'}}
+                                >create</i>
+                            </Link>
                         )}
                     </section>
                 </div>

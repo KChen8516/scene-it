@@ -1,2 +1,2 @@
 # scene-it
-Reactjs and Redux project with an Express.js and MongoDB backend
+Reactjs/Redux UI with Firebase authenticaion and an Express.js/MongoDB backend.

@@ -13,11 +13,9 @@ class LoginContainer extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-        isLoggedIn: state.user.isAuthenticated
-    }
-}
+const mapStateToProps = state => ({
+    isLoggedIn: state.user.isAuthenticated
+});
 
 const mapDispatchToProps = dispatch => {
     return {

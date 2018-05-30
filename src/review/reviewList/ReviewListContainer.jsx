@@ -4,6 +4,7 @@ import ReviewList from './ReviewList';
 
 import { connect } from 'react-redux';
 import { fetchReviewsByUser } from '../../actions/reviewActions';
+import { getUserReviews, getUserProfile } from '../../reducers';
 
 class ReviewListContainer extends Component {
 
@@ -18,17 +19,12 @@ class ReviewListContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    user: state.user.profile,
-    reviews: state.reviews.reviews
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  user: getUserProfile(state),
+  reviews: getUserReviews(state)
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    getReviewsById: id => dispatch(fetchReviewsByUser(id))
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewListContainer);
+export default connect(
+  mapStateToProps, 
+  { getReviewsById: fetchReviewsByUser }
+)(ReviewListContainer);

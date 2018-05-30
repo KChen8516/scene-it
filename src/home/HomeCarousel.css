@@ -30,6 +30,7 @@
   margin-top: 10px;
   color: white;
   font-family: Optima;
+  font-size: 30px;
   line-height: 1.13;
   letter-spacing: -1px;
 }
@@ -40,6 +41,7 @@
   color: white;
   margin-bottom: 0;
   margin-top: 40px;
+  font-size: 12px;
 }
 
 .HomeIcon {

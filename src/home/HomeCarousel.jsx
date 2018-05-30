@@ -11,11 +11,11 @@ const HomeCarousel = () => {
       <div className="HomePage-1">
         <div className="mdc-layout-grid Callout">
           <div className="mdc-layout-grid__inner">
-            <div className="mdc-layout-grid__cell">
+            <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <p className="Date">September 20, 2017</p>
-              <h1 className="mdc-typography--display1 CalloutHeadline">
+              <span className="CalloutHeadline">
                 Scene It, review and share your favorite movies with friends.
-              </h1>
+              </span>
             </div>
           </div>
         </div>
@@ -23,11 +23,11 @@ const HomeCarousel = () => {
       <div className="HomePage-2">
         <div className="mdc-layout-grid Callout">
           <div className="mdc-layout-grid__inner">
-            <div className="mdc-layout-grid__cell">
+            <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <p className="Date">September 20, 2017</p>
-              <h1 className="mdc-typography--display1 CalloutHeadline">
+              <span className="CalloutHeadline">
                 Write your own review now!
-              </h1>
+              </span>
             </div>
           </div>
           <Link to="/reviewform">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+// Firebase setup
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import setAuthToken from './utils/setAuthToken';
@@ -9,6 +10,7 @@ import { ReviewForm, Review, ReviewList, ReviewEdit } from './review';
 import { Navbar } from './navbar';
 import { SideDrawer } from './sidedrawer';
 import { Home } from './home';
+import Info from './info/Info';
 
 // Containers
 import PageNotFound from './components/PageNotFound';
@@ -17,6 +19,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 // CSS and assets
 import '@material/layout-grid/dist/mdc.layout-grid.min.css';
+import '@material/typography/dist/mdc.typography.min.css';
 import './App.css';
 import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
 
@@ -94,6 +97,7 @@ class App extends Component {
               <PrivateRoute exact path="/reviewlist" component={ReviewList}/>
               <PrivateRoute exact path="/reviewform" component={ReviewForm}/>
               <Route exact path="/" component={Home}/>
+              <Route path="/info" component={Info} />
               <Route path="/review/:id" component={Review} />
               <Route component={PageNotFound} />
             </Switch>
