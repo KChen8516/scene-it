@@ -21,7 +21,7 @@ import PrivateRoute from './components/PrivateRoute';
 import '@material/layout-grid/dist/mdc.layout-grid.min.css';
 import '@material/typography/dist/mdc.typography.min.css';
 import './App.css';
-import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer';
+import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer.min';
 
 class App extends Component {
 
@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     const getClassNames = () => {
       if (this.props.location.pathname !== '/') {
-        return "App-Content mdc-toolbar-fixed-adjust";
+        return "App-Content mdc-top-app-bar--fixed-adjust";
       } else {
         return "App-Content";
       }

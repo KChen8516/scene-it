@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { MDCToolbar } from '@material/toolbar';
-import { MDCTemporaryDrawer } from '@material/drawer';
-import '@material/toolbar/dist/mdc.toolbar.min.css';
+import { MDCTopAppBar } from '@material/top-app-bar/dist/mdc.topAppBar.min';
+import { MDCTemporaryDrawer } from '@material/drawer/dist/mdc.drawer.min';
+import '@material/top-app-bar/dist/mdc.top-app-bar.min.css';
 import './Navbar.css';
 
 class Navbar extends Component {
@@ -14,7 +14,7 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
-        new MDCToolbar(document.querySelector('.mdc-toolbar'));
+        this.topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
         this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
     }
 
@@ -56,38 +56,38 @@ class Navbar extends Component {
         
         return (
             <header 
-              className="Navbar mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall"
+              className="Navbar mdc-top-app-bar mdc-top-app-bar--fixed"
               style={currentRoute !== '/' ? SubNavBar : null}
             >
-                <div className="mdc-toolbar__row">
-                    <section className="mdc-toolbar__section mdc-toolbar__section--align-start mdc-toolbar__section--shrink-to-fit" onClick={this.handleNavigation}>
+                <div className="mdc-top-app-bar__row">
+                    <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start" onClick={this.handleNavigation}>
                         {showBackButton ? (
                             <div style={{display:'flex', alignItems:'center'}}>
-                                <a className="material-icons mdc-toolbar__icon--menu">keyboard_arrow_left</a>
+                                <a className="material-icons">keyboard_arrow_left</a>
                                 <span style={{marginLeft:-5, fontWeight:200}}>Back</span>
                             </div>
                         ) : (
                             <a
                               id="menu"
-                              className="material-icons mdc-toolbar__icon--menu"
-                              style={{paddingLeft: 10}}
+                              className="material-icons mdc-top-app-bar__navigation-icon"
+                              style={currentRoute !== '/' ? {color: '#4a4a4a'} : null}
                             >menu</a>
                         )}
                     </section>
-                    <section className="mdc-toolbar__section">
+                    <section className="mdc-top-app-bar__section" style={{justifyContent: 'center'}}>
                         {currentRoute === '/' ? 
-                            <span className="Navbar-Title mdc-typography--headline">{NavbarTitle}</span> :
+                            <span className="Navbar-Title">{NavbarTitle}</span> :
                             <span className="Navbar-Title--Sub">{NavbarTitle}</span>
                         }
                     </section>
-                    <section className="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit">
+                    <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
                         {showBackButton ? (
                             <div style={{height:20,width:50}}></div>
                         ):(
-                            <Link to="/reviewform">
+                            <Link to="/reviewform" style={{textDecoration: 'none'}}>
                                 <i
-                                  className="material-icons mdc-toolbar__icon--menu"
-                                  style={{paddingRight: 10, color: 'white'}}
+                                  className="material-icons mdc-top-app-bar__action-item"
+                                  style={currentRoute !== '/' ? {color: '#4a4a4a'} : null}
                                 >create</i>
                             </Link>
                         )}

@@ -4,8 +4,9 @@ import { withFormik } from 'formik';
 import { findIndex } from 'lodash';
 
 import CommentListForm from '../../components/CommentListForm';
-import { MDCTextField } from '@material/textfield';
-import { MDCFloatingLabel } from '@material/floating-label';
+
+import { MDCTextField } from '@material/textfield/dist/mdc.textfield.min';
+import { MDCFloatingLabel } from '@material/floating-label/dist/mdc.floatingLabel.min';
 import '@material/textfield/dist/mdc.textfield.min.css';
 
 class ReviewEdit extends Component {

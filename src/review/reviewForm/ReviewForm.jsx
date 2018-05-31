@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { findIndex } from 'lodash';
 import { withFormik } from 'formik';
 
-import { MDCTextField } from '@material/textfield';
 import CommentListForm from '../../components/CommentListForm';
 import { createReviewAPI } from '../../actions/reviewActions';
 
+import { MDCTextField } from '@material/textfield/dist/mdc.textfield.min';
 import '@material/textfield/dist/mdc.textfield.min.css';
 import './ReviewForm.css';
 
