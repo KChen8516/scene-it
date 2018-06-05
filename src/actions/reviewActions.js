@@ -16,8 +16,6 @@ export const GET_USER_REVIEWS = 'GET_USER_REVIEWS';
 export const GET_USER_REVIEWS_SUCCESS = 'GET_USER_REVIEWS_SUCCESS';
 export const GET_USER_REVIEWS_ERROR = 'GET_USER_REVIEWS_ERROR';
 
-console.log('Review Actions DOMAIN', DOMAIN);
-
 // Leverage 'thunk' middleware for asynchronous dispatches
 export function createReviewAPI(review) {
   console.log('Review API payload', review);

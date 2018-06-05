@@ -9,8 +9,6 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
-console.log('User Actions DOMAIN', DOMAIN);
-
 export function loginUser(user) {
   // console.log('Calling loginUser...');
   const request = axios({
