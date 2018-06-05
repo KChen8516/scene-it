@@ -1,4 +1,5 @@
 import axios from 'axios';
+import DOMAIN from '../config';
 // query string lib for encoding POST requests
 // import qs from 'qs';
 
@@ -15,6 +16,8 @@ export const GET_USER_REVIEWS = 'GET_USER_REVIEWS';
 export const GET_USER_REVIEWS_SUCCESS = 'GET_USER_REVIEWS_SUCCESS';
 export const GET_USER_REVIEWS_ERROR = 'GET_USER_REVIEWS_ERROR';
 
+console.log('Review Actions DOMAIN', DOMAIN);
+
 // Leverage 'thunk' middleware for asynchronous dispatches
 export function createReviewAPI(review) {
   console.log('Review API payload', review);
@@ -22,7 +25,7 @@ export function createReviewAPI(review) {
     method: 'post',
     // data: qs.stringify(review),
     data: review,
-    url: 'http://localhost:5000/reviews',
+    url: `${DOMAIN}/reviews`,
     headers: ['Content-Type': 'application/x-www-form-urlencoded']
   });
 }
@@ -32,7 +35,7 @@ export function updateReview(review) {
   return axios({
     method: 'put',
     data: review,
-    url:`http://localhost:5000/reviews/edit/${review.id}`,
+    url:`${DOMAIN}/reviews/edit/${review.id}`,
     headers: ['Content-Type': 'application/x-www-form-urlencoded']
   });
 }
@@ -40,7 +43,7 @@ export function updateReview(review) {
 export function fetchReview(id) {
   const req = axios({
     method: 'get',
-    url:`http://localhost:5000/reviews/${id}`
+    url:`${DOMAIN}/reviews/${id}`
   });
 
   return dispatch => {
@@ -61,7 +64,7 @@ export function fetchReview(id) {
 export const fetchReviewsByUser = id => dispatch => {
   dispatch({type: GET_USER_REVIEWS});
   axios
-    .get(`http://localhost:5000/reviews/user/${id}`)
+    .get(`${DOMAIN}/reviews/user/${id}`)
     .then(res =>
       dispatch({
         type: GET_USER_REVIEWS_SUCCESS,
@@ -79,7 +82,7 @@ export const fetchReviewsByUser = id => dispatch => {
 export function fetchReviews() {
   const request = axios({
     method: 'get',
-    url: 'http://localhost:5000/reviews',
+    url: `${DOMAIN}/reviews`,
     headers: []
   });
 

@@ -1,6 +1,7 @@
 // Login user
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
+import DOMAIN from '../config';
 
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_ERROR = 'USER_LOGIN_ERROR';
@@ -8,12 +9,14 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
+console.log('User Actions DOMAIN', DOMAIN);
+
 export function loginUser(user) {
   // console.log('Calling loginUser...');
   const request = axios({
       method: 'post',
       data: user,
-      url: 'http://localhost:5000/users/login',
+      url: `${DOMAIN}/users/login`,
       headers: ['Content-Type': 'application/x-www-form-urlencoded']
   });
 
