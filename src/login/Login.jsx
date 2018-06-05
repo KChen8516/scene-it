@@ -14,7 +14,8 @@ const logoutStyle = {
 // Configure Firebase
 const config = {
     apiKey: "AIzaSyCsJ30UuM45qAWTSLkf-ug1Wof1hBiTONc",
-    authDomain: "sceneit-dev.firebaseapp.com",
+    // authDomain: "sceneit-dev.firebaseapp.com",
+    authDomain: "sceneit.azurewebsites.net",
     databaseURL: "https://sceneit-dev.firebaseio.com",
     projectId: "sceneit-dev",
     storageBucket: "sceneit-dev.appspot.com",
