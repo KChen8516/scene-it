@@ -46,7 +46,7 @@ const Review = (props) => (
       <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <h3 className="mdc-typography--title" style={{marginTop:5,marginBottom:0}}>Pros:</h3>
         {props.pros && props.pros.length > 0 ?
-          <ul className="mdc-list mdc-list--dense">
+          <ul className="mdc-list mdc-list--dense mdc-list--non-interactive">
             {props.pros.map(pro => 
               <li key={pro.id} className="mdc-list-item" style={ItemStyle}>
                 <i className="material-icons mdc-list-item__graphic" style={{marginRight:5}}>favorite</i>
@@ -61,7 +61,7 @@ const Review = (props) => (
       <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <h3 className="mdc-typography--title" style={{marginTop:5,marginBottom:0}}>Cons:</h3>
         {props.cons && props.cons.length > 0 ? 
-          <ul className="mdc-list mdc-list--dense">
+          <ul className="mdc-list mdc-list--dense mdc-list--non-interactive">
             {props.cons.map(con => 
               <li key={con.id} className="mdc-list-item" style={ItemStyle}>
                 <i className="material-icons mdc-list-item__graphic" style={{marginRight:5}}>error</i>
@@ -76,7 +76,7 @@ const Review = (props) => (
       <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <h3 className="mdc-typography--title" style={{marginTop:5,marginBottom:0}}>Other:</h3>
           {props.other && props.other.length > 0 ?
-            <ul className="mdc-list mdc-list--dense">
+            <ul className="mdc-list mdc-list--dense mdc-list--non-interactive">
               {props.other.map(other => 
                 <li key={other.id} className="mdc-list-item" style={ItemStyle}>
                   <i className="material-icons mdc-list-item__graphic" style={{marginRight:5}}>lightbulb_outline</i>

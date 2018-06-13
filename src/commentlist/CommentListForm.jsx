@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 
 import '@material/button/dist/mdc.button.min.css';
-
-const saveButton = {
-    color: 'white',
-    backgroundColor: '#28a745',
-    marginRight: 5,
-    marginTop: 5
-}
-
-const deleteButton = {
-    color: 'white',
-    backgroundColor: '#dc3545',
-    marginTop: 5
-}
+import './CommentList.css';
 
 const commentListStyle = {
     paddingLeft: 0,
@@ -22,7 +10,7 @@ const commentListStyle = {
     fontSize: '.85rem'
 }
 
-const lineStyle = {
+const lineItem = {
     wordWrap: 'break-word',
     whiteSpace: 'normal',
     fontSize: 12,
@@ -32,33 +20,29 @@ const lineStyle = {
     height: 35,
 }
 
-const iconStyle = {
-    marginRight: 5,
-    fontSize: 20,
-    height: 20,
-    width: 20
-}
-
 class CommentListForm extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            isEditing: false
+            isEditing: false,
+            showAdd: false,
+            isEmpty: true
         };
 
         this.createComment = this.createComment.bind(this);
         this.editComment = this.editComment.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
+        this.toggleShowAdd = this.toggleShowAdd.bind(this);
+        this.onBlurAdd = this.onBlurAdd.bind(this);
+        this.clearComment = this.clearComment.bind(this);
     }
 
     renderLineOrEdit(item) {
         if(this.state.isEditing === item.id) {
             return (
-                <div 
-                  className="mdc-text-field"
-                  key={item.id}>
+                <div className="mdc-text-field" key={item.id}>
                     <input
                         onChange={this.editComment}
                         onKeyPress={ev=>{if(ev.key === 'Enter'){this.setState({isEditing:false})}}}
@@ -70,31 +54,30 @@ class CommentListForm extends Component {
                     />
                     <button 
                       className="mdc-button mdc-button--dense" 
-                      style={saveButton}
+                      id="SaveButton"
                       onClick={() => {this.setState({isEditing:false})}}
                     >
                         Save
                     </button>
                     <button 
                       className="mdc-button mdc-button--dense" 
-                      style={deleteButton}
+                      id="DeleteButton"
                       onClick={() => {this.deleteComment(item.id)}}
                     >
                         Delete
                     </button>
                 </div>
-            )
+            );
         } else {
             return <li
-                     style={lineStyle}
                      className="mdc-list-item"
+                     style={lineItem}
                      key={item.id}
                      onClick={() => {this.setState({isEditing:item.id})}}>
-                        <i 
-                          className="material-icons mdc-list-item__start-detail"
-                          style={iconStyle}
-                        >{this.props.materialIcon}</i>
-                       {item.text}
+                        <i className="ListIcon material-icons mdc-list-item__start-detail">
+                            {this.props.materialIcon}
+                        </i>
+                        {item.text}
                     </li>
         }
     }
@@ -113,12 +96,38 @@ class CommentListForm extends Component {
                 text: this.inputElement.value
             });
             this.inputElement.value = '';
+            this.inputElement.focus();
+            this.setState({isEmpty: true});
         }
     }
 
     deleteComment(id) {
         this.props.handleDeleteComment(id);
         this.setState({isEditing:false});
+    }
+
+    toggleShowAdd() {
+        if(!this.state.isEmpty) {
+            return;
+        } else {
+            this.state.showAdd ? this.setState({showAdd: false}) : this.setState({showAdd: true})
+        }
+    }
+
+    onBlurAdd() {
+        if(this.inputElement.value !== '') {
+            this.setState({isEmpty: false})
+            return;
+        } else {
+            this.state.showAdd ? this.setState({showAdd: false}) : this.setState({showAdd: true})
+        }
+    }
+
+    clearComment() {
+        this.inputElement.value = '';
+        this.inputElement.blur();
+        this.setState({isEmpty: true});
+        this.setState({showAdd: false});
     }
 
     render() {
@@ -133,11 +142,9 @@ class CommentListForm extends Component {
         return (
             <div>
                 <h3 className="mdc-typography--title" style={{marginBottom:5, marginTop:5}}>{this.props.title}</h3>
-                {commentList.length > 0 ? 
-                    <ul className="mdc-list" style={commentListStyle}>
-                        {commentList}
-                    </ul> 
-                : null}
+                {commentList.length > 0 && 
+                    <ul className="mdc-list" style={commentListStyle}>{commentList}</ul> 
+                }
                 <div className="mdc-text-field" style={{width:'100%'}}>
                     <input
                         ref={value => this.inputElement = value}
@@ -145,10 +152,29 @@ class CommentListForm extends Component {
                         className="mdc-text-field__input"
                         placeholder={this.props.placeholder}
                         disabled={this.state.isEditing}
-                        onKeyPress={ev => {if(ev.key ==='Enter'){this.createComment(ev)}}}
-                        style={{paddingTop:5}}                        
+                        onKeyPress={ev => {if(ev.key ==='Enter') this.createComment(ev)}}
+                        style={{paddingTop:5}}
+                        onFocus={this.toggleShowAdd}
+                        onBlur={this.onBlurAdd}
                     />
                 </div>
+                {this.state.showAdd &&
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <button 
+                            className="mdc-button mdc-button--dense"
+                            onClick={this.createComment}
+                            id="AddButton"
+                        >
+                            Add
+                        </button>
+                        <i 
+                            className="material-icons ClearIcon"
+                            onClick={this.clearComment}
+                        >
+                            clear
+                        </i>
+                    </div>
+                }
             </div>
         );
     }

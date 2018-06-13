@@ -9,13 +9,13 @@ import setAuthToken from './utils/setAuthToken';
 import { ReviewForm, Review, ReviewList, ReviewEdit } from './review';
 import { Navbar } from './navbar';
 import { SideDrawer } from './sidedrawer';
-import { Home } from './home';
 import Info from './info/Info';
 
 // Containers
 import PageNotFound from './components/PageNotFound';
 import ErrorBoundary from './components/ErrorBoundary';
 import PrivateRoute from './components/PrivateRoute';
+import Home from './home/HomeContainer';
 
 // CSS and assets
 import '@material/layout-grid/dist/mdc.layout-grid.min.css';
@@ -40,7 +40,6 @@ class App extends Component {
       setAuthToken(localStorage.googleToken);
       // Grab the user from firebase
       firebase.auth().onAuthStateChanged(res => {
-        // console.log(res);
         if(res) {
           const { displayName, email, photoURL, uid } = res.providerData[0];
           const user = {
@@ -50,21 +49,14 @@ class App extends Component {
             googleID: uid 
           }
           this.props.login(user);
-          // this.props.setCurrentUser(user);
         }
       });
     }
   }
 
   componentDidMount() {
-    //console.log('App.js component mounted.');
     this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-drawer--temporary'));
-
-    this.props.history.listen((location, action) => {
-      // console.log('route change');
-      // console.log(location, action);
-      this.drawer.open = false;
-    });
+    this.props.history.listen((location, action) => this.drawer.open = false);
   }
 
   componentWillUnmount() {

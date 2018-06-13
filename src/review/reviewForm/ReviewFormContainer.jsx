@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import ReviewFormik from './ReviewForm';
-
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
 class ReviewFormContainer extends Component {
-
-  componentWillReceiveProps(nextProps) {
-      // console.log('ReactFormContainer componentWillReciveProps', nextProps );
-  }
-
   render() {
-      return <ReviewFormik user={this.props.user}/>
+      return <ReviewFormik {...this.props}/>
   }
 }
 
@@ -28,4 +23,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewFormContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewFormContainer));
