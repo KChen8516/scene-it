@@ -11,7 +11,7 @@ export default combineReducers({
 });
 
 // Narrow the scope each selector deals with to the relevant reducer
-export const getUserReviews = (state) => fromReview.getUserReviews(state.reviews);
+export const getUserReviews = state => fromReview.getUserReviews(state.reviews);
 
 export const getUserProfile = state => fromUser.getUserProfile(state.user);
 export const getIsAuthenticated = state => fromUser.getIsAuthenticated(state.user);

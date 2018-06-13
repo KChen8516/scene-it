@@ -3,7 +3,7 @@ import { updateReview } from '../../actions/reviewActions';
 import { withFormik } from 'formik';
 import { findIndex } from 'lodash';
 
-import CommentListForm from '../../components/CommentListForm';
+import CommentListForm from '../../commentlist/CommentListForm';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield.min';
 import { MDCFloatingLabel } from '@material/floating-label/dist/mdc.floatingLabel.min';

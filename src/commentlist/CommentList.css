@@ -1,0 +1,35 @@
+.ListIcon {
+    margin-right: 5px;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+#SaveButton {
+    color: white;
+    background-color: #28a745;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#DeleteButton {
+    color: white;
+    background-color: #dc3545;
+    margin-top: 5px;
+}
+
+#AddButton {
+    color: white;
+    background-color: #28a745;
+}
+
+.ClearIcon {
+    font-size: 20px;
+    margin-left: 10px;
+    color: #9E9E9E;
+}
+
+.ClearIcon:hover {
+    cursor: pointer;
+    color: #212121;
+}

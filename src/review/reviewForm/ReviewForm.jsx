@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import { findIndex } from 'lodash';
 import { withFormik } from 'formik';
 
-import CommentListForm from '../../components/CommentListForm';
+import CommentListForm from '../../commentlist/CommentListForm';
 import { createReviewAPI } from '../../actions/reviewActions';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield.min';
 import '@material/textfield/dist/mdc.textfield.min.css';
 import './ReviewForm.css';
 
-// Presentational control form component for reviews
 class ReviewForm extends Component {
 
   constructor(props) {
     super(props);
-    // console.log('ReviewForm props', this.props);
+
     this.state = {
       pros: [],
       cons: [],
-      other: []
+      other: [],
+      errors: {}
     };
+
     this.addConComment = this.addConComment.bind(this);
     this.addProComment = this.addProComment.bind(this);
     this.addOtherComment = this.addOtherComment.bind(this);
@@ -36,11 +37,16 @@ class ReviewForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Reset the state of the rest of the form
-    if(nextProps.status === 'Success') {
-      this.setState({pros: []});
-      this.setState({cons: []});
-      this.setState({other: []});
-      nextProps.setStatus(null);
+    if(nextProps.status) {
+      if(nextProps.status.type === 'success') {
+        this.setState({pros: []});
+        this.setState({cons: []});
+        this.setState({other: []});
+        nextProps.setStatus(null);
+      } else if (nextProps.status.type === 'error') {
+        this.setState({errors: nextProps.status.data});
+        console.log(this.state);
+      }
     }
   }
 
@@ -127,17 +133,19 @@ class ReviewForm extends Component {
   }
 
   render() {
-    console.log('ReviewForm props', this.props);
+    // console.log('ReviewForm props', this.props);
+    const { errors } = this.state;
+
     return (
       <div className="ReviewFormPage">
         {/* Navbar button */}
         <span className="SubmitReviewForm" onClick={this.submitReview}>Save</span>
+        {/* Submit Review Form */}
         <div className="mdc-layout-grid" style={{paddingTop:0}}>
           <div className="mdc-layout-grid__inner">
-            {/* Submit Review Form */}
                 
               <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <div className="mdc-text-field" style={{width:'100%'}}>
+                <div className="mdc-text-field" style={{width:'100%', marginBottom: 0}}>
                   <input
                     type="text"
                     name="movieTitle"
@@ -149,6 +157,7 @@ class ReviewForm extends Component {
                   <label className="mdc-floating-label" htmlFor="movie-title-field">Movie Title</label>
                   <div className="mdc-line-ripple"></div>
                 </div>
+                {errors.movieTitle && <span className="InvalidInput">{errors.movieTitle}</span>}
               </div>
 
               <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
@@ -187,7 +196,6 @@ class ReviewForm extends Component {
                   />
               </div>
 
-              {/* {!this.props.isSubmitting ? <span>Not submitted</span> : <span>Submitting...</span>} */}
             </div>
         </div>
       </div>
@@ -204,15 +212,17 @@ const ReviewFormik = withFormik({
   handleSubmit: (values, { props, setSubmitting, resetForm, setStatus }) => {    
     createReviewAPI(values).then(
       success => {
-        console.log('Successfully submitted review.');
+        console.log('Successfully submitted review.', success);
         // Reset form prop values
         resetForm();
         // Set form status for component state
-        setStatus('Success');
+        setStatus({type: 'success'});
         setSubmitting(false);
+        props.history.push(`/review/${success.data._id}`);
       },
       error => {
-        console.log('Error');
+        setStatus({type: 'error', data: error.response.data});
+        setSubmitting(false);
       }
     );
   }
