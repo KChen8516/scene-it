@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Review from './Review';
 import { fetchReview } from '../../actions/reviewActions';
+import { getReview, getUserProfile } from '../../reducers';
 
 class ReviewContainer extends Component {
 
@@ -27,13 +28,8 @@ ReviewContainer.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.profile,
-    id: state.reviews.fetchedReview.id,
-    movieTitle: state.reviews.fetchedReview.movieTitle,
-    pros: state.reviews.fetchedReview.pros,
-    cons: state.reviews.fetchedReview.cons,
-    other: state.reviews.fetchedReview.other,
-    error: state.reviews.fetchedReview.error,
+    user: getUserProfile(state),
+    review: getReview(state)
   }
 }
 

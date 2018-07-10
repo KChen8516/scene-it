@@ -19,6 +19,7 @@ const INITIAL_STATE = {
   fetchedReview: {
     id: null,
     movieTitle: null,
+    score: null,
     pros: [],
     cons: [],
     other: [],
@@ -86,6 +87,7 @@ export default function(prevState = INITIAL_STATE, action) {
           loading: false,
           id: action.payload._id,
           movieTitle: action.payload.movieTitle,
+          score: action.payload.score,
           pros: action.payload.pros,
           cons: action.payload.cons,
           other: action.payload.other
@@ -132,4 +134,6 @@ export default function(prevState = INITIAL_STATE, action) {
 }
 
 // State selectors
-export const getUserReviews = (state) => state.reviews;
+export const getUserReviews = state => state.reviews;
+export const getReview = state => state.fetchedReview;
+export const getReviewErrors = state => state.errors;

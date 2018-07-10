@@ -24,7 +24,6 @@ export function createReviewAPI(review) {
     // data: qs.stringify(review),
     data: review,
     url: `${DOMAIN}/reviews`,
-    headers: ['Content-Type': 'application/x-www-form-urlencoded']
   });
 }
 
@@ -34,7 +33,6 @@ export function updateReview(review) {
     method: 'put',
     data: review,
     url:`${DOMAIN}/reviews/edit/${review.id}`,
-    headers: ['Content-Type': 'application/x-www-form-urlencoded']
   });
 }
 
@@ -71,7 +69,7 @@ export const fetchReviewsByUser = id => dispatch => {
     )
     .catch(err => 
       dispatch({
-        type: GET_USER_REVIEWS_SUCCESS,
+        type: GET_USER_REVIEWS_ERROR,
         payload: err.response.data
       })
     );
