@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchReview } from '../../actions/reviewActions';
+import { getReview } from '../../reducers';
 
 import EditReviewFormik from './ReviewEdit';
 
@@ -18,11 +19,7 @@ class ReviewEditContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        id: state.reviews.fetchedReview.id,
-        movieTitle: state.reviews.fetchedReview.movieTitle,
-        pros: state.reviews.fetchedReview.pros,
-        cons: state.reviews.fetchedReview.cons,
-        other: state.reviews.fetchedReview.other,
+        review: getReview(state),
         error: state.reviews.fetchedReview.error,
     };
 }
