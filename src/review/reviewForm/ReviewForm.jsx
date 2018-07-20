@@ -3,11 +3,14 @@ import { findIndex } from 'lodash';
 import { withFormik } from 'formik';
 
 import CommentListForm from '../../commentlist/CommentListForm';
+import SearchBar from '../../movies/SearchBar';
 import { createReviewAPI } from '../../actions/reviewActions';
 
 import { MDCTextField } from '@material/textfield/dist/mdc.textfield.min';
 import '@material/textfield/dist/mdc.textfield.min.css';
 import './ReviewForm.css';
+
+import { TMDB_IMAGE_URL } from '../../config';
 
 class ReviewForm extends Component {
   constructor(props) {
@@ -23,12 +26,12 @@ class ReviewForm extends Component {
     this.addConComment = this.addConComment.bind(this);
     this.addProComment = this.addProComment.bind(this);
     this.addOtherComment = this.addOtherComment.bind(this);
+    this.setMovie = this.setMovie.bind(this);
     this.submitReview = this.submitReview.bind(this);
   }
 
   componentDidMount() {
-    this.titleField = new MDCTextField(document.querySelector('.mdc-text-field'));
-    this.scoreField = new MDCTextField(document.querySelector('.mdc-text-field--outlined'));
+    this.scoreField = new MDCTextField(document.querySelector('.mdc-text-field--dense'));
   }
 
   componentDidUpdate() {
@@ -57,6 +60,13 @@ class ReviewForm extends Component {
     this.props.values.other = [...this.state.other];
     this.props.values._id = this.props.user._id;
     this.props.handleSubmit(e);
+  }
+
+  setMovie(movie) {
+    this.props.values.movieTitle = movie.title;
+    this.props.values.backdropPath = `${TMDB_IMAGE_URL}${movie.backdrop_path}`;
+    this.props.values.posterPath = `${TMDB_IMAGE_URL}${movie.poster_path}`;
+    this.props.values.tmdbId = movie.id;
   }
 
   addProComment(newComment) {
@@ -144,32 +154,11 @@ class ReviewForm extends Component {
           Save
         </span>
 
+        {/* Search for a movie from TMDB */}
+        <SearchBar selectMovie={this.setMovie} />
+
         <div className="mdc-layout-grid" style={{ paddingTop: 0 }}>
           <div className="mdc-layout-grid__inner">
-            {/* Movie Title Input */}
-            <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-              <div
-                className="mdc-text-field"
-                style={{ width: '100%', marginBottom: 0 }}
-              >
-                <input
-                  type="text"
-                  name="movieTitle"
-                  onChange={this.props.handleChange}
-                  value={this.props.values.movieTitle}
-                  className="mdc-text-field__input"
-                  id="movie-title-field"
-                />
-                <label htmlFor="movie-title-field" className="mdc-floating-label">
-                  Movie Title
-                </label>
-                <div className="mdc-line-ripple" />
-              </div>
-              {errors.movieTitle && (
-                <span className="InvalidInput">{errors.movieTitle}</span>
-              )}
-            </div>
-            
             {/* Review Score Input */}
             <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <div
@@ -197,10 +186,12 @@ class ReviewForm extends Component {
                 <div className="mdc-notched-outline__idle" />
               </div>
               {errors.score && (
-                <div><span className="InvalidInput">{errors.score}</span></div>
+                <div>
+                  <span className="InvalidInput">{errors.score}</span>
+                </div>
               )}
             </div>
-              
+
             {/* Pros Comment List */}
             <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <CommentListForm
@@ -213,7 +204,7 @@ class ReviewForm extends Component {
                 materialIcon="favorite"
               />
             </div>
-            
+
             {/* Cons Comment List */}
             <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
               <CommentListForm
@@ -249,7 +240,6 @@ class ReviewForm extends Component {
 const ReviewFormik = withFormik({
   mapPropsToValues: props => {
     return {
-      movieTitle: '',
       score: ''
     };
   },

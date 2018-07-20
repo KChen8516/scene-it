@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { search } from './movieReducer';
+import MovieReducer, * as fromMovie from './movieReducer';
 import ReviewReducer, * as fromReview from './reviewReducer';
 import UserReducer, * as fromUser from './userReducer';
 
 export default combineReducers({
-  search,
+  movies: MovieReducer,
   reviews: ReviewReducer,
   user: UserReducer
 });
@@ -17,3 +17,6 @@ export const getReviewErrors = state => fromReview.getReviewErrors(state.reviews
 
 export const getUserProfile = state => fromUser.getUserProfile(state.user);
 export const getIsAuthenticated = state => fromUser.getIsAuthenticated(state.user);
+
+export const getSearchMovieResults = state => fromMovie.getSearchMovieResults(state.movies);
+export const getSearchMovieErrors = state => fromMovie.getSearchMovieErrors(state.movies);

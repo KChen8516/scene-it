@@ -45,6 +45,9 @@ const SideDrawer = props => (
       ) : null}
 
       <div id="DrawerSubNav">
+        {/* <Link to="/movies" className="DrawerNavLink mdc-list-item mdc-typography--title">
+          Movies
+        </Link> */}
         <Link to="/info" className="DrawerNavLink mdc-list-item mdc-typography--title">
           App Info
         </Link>

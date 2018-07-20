@@ -26,7 +26,11 @@ const Review = props => (
   <div className="ReviewPage mdc-layout-grid">
     <div className="mdc-layout-grid__inner">
       <div className="PosterSection mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-        <img className="PosterImage" src={MoviePoster} alt="Wall-e" />
+        {props.review.backdropURL ? (
+          <img className="PosterImage" src={props.review.backdropURL} alt="Movie Backdrop" />
+        ) : (
+          <img className="PosterImage" src={MoviePoster} alt="Wall-e" />
+        )}
         <Link to={`/review/edit/${props.review.id}`}>
           <img className="EditReviewIcon" src={EditIcon} alt="Edit Icon" />
         </Link>
