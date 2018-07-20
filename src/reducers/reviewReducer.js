@@ -35,7 +35,7 @@ const INITIAL_STATE = {
  * Reducers receive payloads of information (actions) to update the state tree.
  */
 export default function(prevState = INITIAL_STATE, action) {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_ALL_REVIEWS: {
       return {
         ...prevState,
@@ -43,30 +43,30 @@ export default function(prevState = INITIAL_STATE, action) {
           ...prevState.reviewList,
           loading: true
         }
-      }
+      };
     }
 
     case FETCH_ALL_REVIEWS_ERROR: {
       return {
         ...prevState,
         reviewList: {
-          ...prevState.reviewList,          
+          ...prevState.reviewList,
           loading: false,
           error: action.payload
         }
-      }
+      };
     }
 
     case FETCH_ALL_REVIEWS_SUCCESS: {
       return {
         ...prevState,
         reviewList: {
-          ...prevState.reviewList,          
+          ...prevState.reviewList,
           reviews: action.payload,
           loading: false,
           error: null
         }
-      }
+      };
     }
 
     case FETCH_REVIEW: {
@@ -74,9 +74,9 @@ export default function(prevState = INITIAL_STATE, action) {
         ...prevState,
         fetchedReview: {
           ...prevState.fetchedReview,
-          id: action.id,
+          id: action.id
         }
-      }
+      };
     }
 
     case FETCH_REVIEW_SUCCESS: {
@@ -87,12 +87,14 @@ export default function(prevState = INITIAL_STATE, action) {
           loading: false,
           id: action.payload._id,
           movieTitle: action.payload.movieTitle,
+          backdropURL: action.payload.backdropURL,
+          posterURL: action.payload.posterURL,
           score: action.payload.score,
           pros: action.payload.pros,
           cons: action.payload.cons,
           other: action.payload.other
         }
-      }
+      };
     }
 
     case FETCH_REVIEW_ERROR: {
@@ -102,14 +104,14 @@ export default function(prevState = INITIAL_STATE, action) {
           loading: false,
           error: action.payload
         }
-      }
+      };
     }
 
     case GET_USER_REVIEWS: {
       return {
         ...prevState,
         loading: true
-      }
+      };
     }
 
     case GET_USER_REVIEWS_SUCCESS: {
@@ -117,7 +119,7 @@ export default function(prevState = INITIAL_STATE, action) {
         ...prevState,
         reviews: action.payload,
         loading: false
-      }
+      };
     }
 
     case GET_USER_REVIEWS_ERROR: {
@@ -125,7 +127,7 @@ export default function(prevState = INITIAL_STATE, action) {
         ...prevState,
         loading: false,
         errors: action.payload
-      }
+      };
     }
 
     default:

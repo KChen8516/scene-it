@@ -1,40 +1,34 @@
 import {
-  FETCH_MOVIES,
-  FETCH_MOVIES_ERROR,
-  FETCH_MOVIES_FULFILLED,
-  FETCH_MOVIE_FROM_STORE
+  SEARCH_MOVIES,
+  SEARCH_MOVIES_ERROR,
+  SEARCH_MOVIES_SUCCESS
 } from '../actions/movieActions';
 
 const initialState = {
   movies: [],
-  fetching: false,
-  fetched: false,
-  error: null
-}
+  isFetching: false,
+  errors: null
+};
 
-export function search(state = initialState, action) {
-  switch(action.type) {
-    case FETCH_MOVIES: {
-      return {...state, fetching: true}
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case SEARCH_MOVIES: {
+      return { ...state, isFetching: true };
     }
-    case FETCH_MOVIES_ERROR: {
-      console.log('An error occured');
-      return {...state, fetching: false, error: action.payload}
+    case SEARCH_MOVIES_ERROR: {
+      return { ...state, isFetching: false, errors: action.payload };
     }
-    case FETCH_MOVIES_FULFILLED: {
+    case SEARCH_MOVIES_SUCCESS: {
       return {
         ...state,
-        fetching: false,
-        fetched: true,
+        isFetching: false,
         movies: action.payload
-      }
-    }
-    case FETCH_MOVIE_FROM_STORE: {
-      console.log(action.payload);
-      console.log(state);
-      return state;
+      };
     }
     default:
       return state;
   }
 }
+
+export const getSearchMovieResults = state => state.movies;
+export const getSearchMovieErrors = state => state.errors;
