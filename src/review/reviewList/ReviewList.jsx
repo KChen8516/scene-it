@@ -10,7 +10,7 @@ const ReviewList = props => (
       <div className="ProfileHeader mdc-layout-grid__cell--span-12">
         <img src={props.user.image} alt="header" />
         <h3>{props.user.displayName}</h3>
-        <p>Member since 2017 | {props.reviews.length} Reviews</p>
+        <p>Member since 2018 | {props.reviews.length} Reviews</p>
       </div>
 
       {/*TODO: Rewrite into its own List component */}
@@ -23,15 +23,17 @@ const ReviewList = props => (
               style={{ textDecoration: 'none' }}
             >
               <div className="mdc-card" style={{ marginTop: 5, flexDirection: 'row' }}>
-                {review.posterURL && 
+                {review.posterURL && (
                   <div className="ReviewPoster">
-                    <img src={review.posterURL} alt="Movie Poster" style={{height:175}}/>
+                    <img
+                      src={review.posterURL}
+                      alt="Movie Poster"
+                      style={{ height: 175 }}
+                    />
                   </div>
-                }
+                )}
                 <div className="ReviewDetails">
-                  <h2 className="ReviewTitle mdc-typography--subheading2">
-                    {review.movieTitle}
-                  </h2>
+                  <h2 className="ReviewTitle">{review.movieTitle}</h2>
                   <span className="ReviewDate mdc-typography--caption">
                     Published on 10/10/2055
                   </span>
@@ -53,7 +55,6 @@ const ReviewList = props => (
                     ) : null}
                   </div>
                 </div>
-                
               </div>
             </Link>
           ))

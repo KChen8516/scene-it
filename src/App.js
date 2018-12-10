@@ -11,12 +11,12 @@ import { Navbar } from './navbar';
 import { SideDrawer } from './sidedrawer';
 import Info from './info/Info';
 import { MoviesHome } from './movies';
+import { Home } from './home';
 
-// Containers
+// Components/HOC
 import PageNotFound from './components/PageNotFound';
 import ErrorBoundary from './components/ErrorBoundary';
 import PrivateRoute from './components/PrivateRoute';
-import Home from './home/HomeContainer';
 
 // CSS and assets
 import '@material/layout-grid/dist/mdc.layout-grid.min.css';
@@ -81,7 +81,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar routes={this.props} />
+        <Navbar />
         <SideDrawer history={this.props.history} />
 
         <ErrorBoundary>

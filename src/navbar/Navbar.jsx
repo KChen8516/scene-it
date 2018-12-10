@@ -7,9 +7,12 @@ import '@material/top-app-bar/dist/mdc.top-app-bar.min.css';
 import './Navbar.css';
 
 class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.handleNavigation = this.handleNavigation.bind(this);
+    this.setNavbarTitle = this.setNavbarTitle.bind(this);
+    this.setRightTopBarItem = this.setRightTopBarItem.bind(this);
   }
 
   componentDidMount() {
@@ -20,44 +23,96 @@ class Navbar extends Component {
   }
 
   handleNavigation() {
-    let currentRoute = this.props.routes.location.pathname;
+    let currentRoute = this.props.location.pathname;
     if (
       currentRoute === '/reviewform' ||
       /\/review\/edit/.test(currentRoute) ||
       currentRoute === '/info'
     ) {
-      this.props.routes.history.goBack();
+      this.props.history.goBack();
     } else {
       this.drawer.open = true;
     }
   }
 
-  render() {
-    const SubNavBar = { background: '#f9f9f9', color: '#4a4a4a' };
-    let currentRoute = this.props.routes.location.pathname;
-    let NavbarTitle = '';
-    switch (currentRoute) {
-      case '/':
-        NavbarTitle = 'Scene It';
-        break;
-      case '/reviewform':
-        NavbarTitle = 'New Review';
-        break;
-      case '/reviewlist':
-        NavbarTitle = 'My Reviews';
-        break;
-      case '/info':
-        NavbarTitle = 'App Info';
-        break;
-      case '/movies':
-        NavbarTitle = 'Movies';
-        break;
-      default:
-        NavbarTitle = '404';
-    }
+  setNavbarTitle() {
+    let { location } = this.props;
+
     // Regex test for review/:id and review/edit/:id routes
-    if (/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
-    if (/\/review\/edit/.test(currentRoute)) NavbarTitle = 'Edit Review';
+    if (/\/review\//.test(location.pathname)) return 'Review';
+    if (/\/review\/edit/.test(location.pathname)) return 'Edit Review';
+
+    switch (location.pathname) {
+      case '/':
+        return 'Scene It';
+      case '/reviewform':
+        return 'New Review';
+      case '/reviewlist':
+        return 'My Reviews';
+      case '/info':
+        return 'App Info';
+      case '/movies':
+        return 'Movies';
+      default:
+        return '404';
+    }
+  }
+
+  setRightTopBarItem() {
+    let { location, isLoggedIn } = this.props;
+
+    if (!isLoggedIn) return <span style={{ color: 'white', fontSize: 20 }}>Login</span>;
+
+    // Routes to show 'Back' button
+    if (
+      location.pathname === '/reviewform' ||
+      /\/review\/edit/.test(location.pathname) ||
+      location.pathname === '/info'
+    ) {
+      return <div style={{ height: 20, width: 50 }} />;
+    } else {
+      return (
+        <Link to="/reviewform" style={{ textDecoration: 'none' }}>
+          <i
+            className="material-icons mdc-top-app-bar__action-item"
+            style={location.pathname !== '/' ? { color: '#4a4a4a' } : null}
+          >
+            create
+          </i>
+        </Link>
+      );
+    }
+  }
+
+  render() {
+    const { isLoggedIn } = this.props;
+    let NavbarTitle = this.setNavbarTitle();
+    let rightTopBarItem = this.setRightTopBarItem();
+    let currentRoute = this.props.location.pathname;
+
+    const SubNavBar = { background: '#f9f9f9', color: '#4a4a4a' };
+    // switch (currentRoute) {
+    //   case '/':
+    //     NavbarTitle = 'Scene It';
+    //     break;
+    //   case '/reviewform':
+    //     NavbarTitle = 'New Review';
+    //     break;
+    //   case '/reviewlist':
+    //     NavbarTitle = 'My Reviews';
+    //     break;
+    //   case '/info':
+    //     NavbarTitle = 'App Info';
+    //     break;
+    //   case '/movies':
+    //     NavbarTitle = 'Movies';
+    //     break;
+    //   default:
+    //     NavbarTitle = '404';
+    // }
+    // // Regex test for review/:id and review/edit/:id routes
+    // if (/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
+    // if (/\/review\/edit/.test(currentRoute)) NavbarTitle = 'Edit Review';
 
     let showBackButton = false;
 
@@ -100,28 +155,29 @@ class Navbar extends Component {
             className="mdc-top-app-bar__section"
             style={{ justifyContent: 'center' }}
           >
-            {currentRoute === '/' ? (
-              <span className="Navbar-Title">{NavbarTitle}</span>
-            ) : (
-              <span className="Navbar-Title--Sub">{NavbarTitle}</span>
-            )}
+            <span className={currentRoute === '/' ? 'Navbar-Title' : 'Navbar-Title--Sub'}>
+              {NavbarTitle}
+            </span>
           </section>
           <section
             className="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
             role="toolbar"
+            style={!isLoggedIn ? { justifyContent: 'center' } : null}
           >
-            {showBackButton ? (
+            {/* {showBackButton ? (
               <div style={{ height: 20, width: 50 }} />
             ) : (
+              
               <Link to="/reviewform" style={{ textDecoration: 'none' }}>
-                <i
-                  className="material-icons mdc-top-app-bar__action-item"
-                  style={currentRoute !== '/' ? { color: '#4a4a4a' } : null}
-                >
-                  create
-                </i>
+                  <i
+                    className="material-icons mdc-top-app-bar__action-item"
+                    style={currentRoute !== '/' ? { color: '#4a4a4a' } : null}
+                  >
+                    create
+                  </i>
               </Link>
-            )}
+            )} */}
+            {rightTopBarItem}
           </section>
         </div>
       </header>

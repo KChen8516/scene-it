@@ -44,10 +44,31 @@
   font-size: 12px;
 }
 
-.HomeIcon {
+.Message {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.Message span {
+  color: white;
+  font-size: 21px;
+  margin-left: 10px;
+  margin-right: 10px;
+  line-height: 1.2em;
+  text-shadow: 1px 1px black;
+}
+
+.Action {
   position: absolute;
-  height: 90px;
-  width: 90px;
-  right: 20px;
-  bottom: 40px;
+  bottom: 75px;
+  width: 100%;
+}
+
+#CTAButton {
+  background-color: rgb(165,2,121);
+  color: white;
+  height: 50px;
+  width: 80%;
+  font-size: 20px;
+  text-transform: none;
 }
