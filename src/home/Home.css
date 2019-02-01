@@ -1,74 +1,82 @@
-.HomePage-1 {
-  background-image: url(../assets/bkg-tv.jpg);
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  position: relative;
+.glide__slide {
+	/* Fix for flashing background image on slide */
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
-.HomePage-2 {
-  background-image: url(../assets/bkg-computer.jpg);
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  position: relative;
+.Screen {
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	position: relative;
+}
+
+.Screen--Image-One {
+	background-image: url(../assets/popcorn-black.jpg);
+}
+
+.Screen--Image-Two {
+	background-image: url(../assets/popcorn-bowl.jpg);
 }
 
 .Callout {
-  position: absolute;
-  bottom: 0;
-  height: 40%;
-  width: 100%;
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,1) 100%);
-  background: -o-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,1) 100%);
-  /* Chrome10-25,Safari5.1-6 */ /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,1) 100%);
-}
-
-.CalloutHeadline {
-  margin-top: 10px;
-  color: white;
-  font-family: Optima;
-  font-size: 30px;
-  line-height: 1.13;
-  letter-spacing: -1px;
-}
-
-.Date {
-  text-align: center;
-  opacity: 0.9;
-  color: white;
-  margin-bottom: 0;
-  margin-top: 40px;
-  font-size: 12px;
+	position: absolute;
+	bottom: 0;
+	height: 40%;
+	width: 100%;
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .65) 40%, rgba(0, 0, 0, 1) 100%);
+	background: -o-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .65) 40%, rgba(0, 0, 0, 1) 100%);
+	/* Chrome10-25,Safari5.1-6 */ /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .65) 40%, rgba(0, 0, 0, 1) 100%);
 }
 
 .Message {
-  padding-top: 100px;
-  text-align: center;
+	padding-top: 100px;
+	text-align: center;
 }
 
 .Message span {
-  color: white;
-  font-size: 21px;
-  margin-left: 10px;
-  margin-right: 10px;
-  line-height: 1.2em;
-  text-shadow: 1px 1px black;
+	color: white;
+	font-size: 21px;
+	margin-left: 10px;
+	margin-right: 10px;
+	line-height: 1.2em;
+	text-shadow: 1px 1px black;
 }
 
 .Action {
-  position: absolute;
-  bottom: 75px;
-  width: 100%;
+	position: absolute;
+	bottom: 75px;
+	width: 100%;
 }
 
 #CTAButton {
-  background-color: rgb(165,2,121);
-  color: white;
-  height: 50px;
-  width: 80%;
-  font-size: 20px;
-  text-transform: none;
+	background-color: rgb(165, 2, 121);
+	color: white;
+	height: 50px;
+	width: 80%;
+	font-size: 20px;
+	text-transform: none;
+}
+
+.Callout__Headline {
+	margin-top: 10px;
+	color: white;
+	font-family: Optima;
+	font-size: 30px;
+	line-height: 1.13;
+	letter-spacing: -1px;
+}
+
+.Date {
+	text-align: center;
+	opacity: 0.9;
+	color: white;
+	margin-bottom: 0;
+	margin-top: 40px;
+	font-size: 12px;
 }
