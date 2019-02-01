@@ -7,11 +7,11 @@ import setAuthToken from "./utils/setAuthToken";
 
 // Module Imports
 import { ReviewForm, Review, ReviewList, ReviewEdit } from "./review";
-import { Navbar } from "./navbar";
-import { SideDrawer } from "./sidedrawer";
+import { Navbar } from "./Navbar";
+import { SideDrawer } from "./Sidedrawer";
 import Info from "./info/Info";
 import { MoviesHome } from "./movies";
-import { Home } from "./home";
+import { Home } from "./Home";
 
 // Components/HOC
 import PageNotFound from "./components/PageNotFound";
@@ -27,13 +27,12 @@ import { MDCTemporaryDrawer } from "@material/drawer/dist/mdc.drawer.min";
 
 class App extends Component {
 	/**
-   * React only provides 'this' context to lifecycle methods such as the constructor.
-   */
+	|--------------------------------------------------
+	| React only provides 'this' context to lifecycle methods such as the constructor.  
+	|--------------------------------------------------
+	*/
 	constructor(props) {
 		super(props);
-
-		// console.log('App props', this.props);
-
 		// Check for token
 		if (localStorage.googleToken) {
 			console.log("Local token found");
@@ -68,22 +67,22 @@ class App extends Component {
 		// console.log(nextProps);
 	}
 
-	render() {
-		const getClassNames = () => {
-			if (this.props.location.pathname !== "/") {
-				return "App-Content mdc-top-app-bar--fixed-adjust";
-			} else {
-				return "App-Content";
-			}
-		};
+	getClassNames = () => {
+		if (this.props.location.pathname !== "/") {
+			return "App__Content mdc-top-app-bar--fixed-adjust";
+		} else {
+			return "App__Content";
+		}
+	};
 
+	render() {
 		return (
 			<div className="App">
 				<Navbar />
 				<SideDrawer history={this.props.history} />
 
 				<ErrorBoundary>
-					<div className={getClassNames()}>
+					<div className={this.getClassNames()}>
 						<Switch>
 							<PrivateRoute path="/review/edit/:id" component={ReviewEdit} />
 							<PrivateRoute exact path="/reviewlist" component={ReviewList} />
@@ -97,7 +96,7 @@ class App extends Component {
 					</div>
 				</ErrorBoundary>
 
-				<div className="App-Footer" />
+				<div className="App__Footer" />
 			</div>
 		);
 	}
