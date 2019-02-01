@@ -1,0 +1,6 @@
+/* Global utitlity classes */
+
+.center-content {
+    display: flex;
+    justify-content: center;
+}

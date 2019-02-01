@@ -23,7 +23,7 @@ const SideDrawer = props => (
             {props.isLoggedIn ? props.user.displayName : 'Welcome!'}
           </h1>
           <p className="mdc-typography--caption">
-            Member since 2017 | {props.isLoggedIn ? 'Authenticated' : 'Not Authenticated'}
+            Member since 2018 | {props.isLoggedIn ? 'Authenticated' : 'Not Authenticated'}
           </p>
         </div>
       </header>

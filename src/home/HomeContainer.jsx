@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import Home from "./Home";
 import Glide from "@glidejs/glide";
-import "./Home.css";
-import "@glidejs/glide/dist/css/glide.core.min.css";
 
-class Home extends Component {
+class HomeContainer extends Component {
 	componentDidMount() {
 		// PR pending for preventing sliding at the start and end
 		// https://github.com/glidejs/glide/issues/219
@@ -14,41 +13,8 @@ class Home extends Component {
 	}
 
 	render() {
-		return (
-			<div className="glide">
-				<div className="glide__track" data-glide-el="track">
-					<ul className="glide__slides" style={{ margin: 0 }}>
-						<li className="glide__slide">
-							<div className="Screen Screen--Image-One">
-								<div className="mdc-layout-grid Callout">
-									<div className="mdc-layout-grid__inner">
-										<div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-											<p className="Date">September 20, 2017</p>
-											<span className="Callout__Headline">
-												Scene It, review and share your favorite movies with friends.
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li className="glide__slide">
-							<div className="Screen Screen--Image-Two">
-								<div className="mdc-layout-grid Callout">
-									<div className="mdc-layout-grid__inner">
-										<div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-											<p className="Date">September 20, 2017</p>
-											<span className="Callout__Headline">Write your own review now!</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		);
+		return <Home />;
 	}
 }
 
-export default Home;
+export default HomeContainer;
