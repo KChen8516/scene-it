@@ -21,7 +21,7 @@ class Navbar extends Component {
 	}
 
 	handleNavigation() {
-		let currentRoute = this.props.location.pathname;
+		const currentRoute = this.props.location.pathname;
 		if (currentRoute === "/reviewform" || /\/review\/edit/.test(currentRoute) || currentRoute === "/info") {
 			this.props.history.goBack();
 		} else {
@@ -30,7 +30,7 @@ class Navbar extends Component {
 	}
 
 	setNavbarTitle() {
-		let { location } = this.props;
+		const { location } = this.props;
 
 		// Regex test for review/:id and review/edit/:id routes
 		if (/\/review\//.test(location.pathname)) return "Review";
@@ -53,7 +53,7 @@ class Navbar extends Component {
 	}
 
 	setRightTopBarItem() {
-		let { location, isLoggedIn } = this.props;
+		const { location, isLoggedIn } = this.props;
 
 		if (!isLoggedIn)
 			return (
@@ -90,28 +90,6 @@ class Navbar extends Component {
 		let currentRoute = this.props.location.pathname;
 
 		const SubNavBar = { background: "#f9f9f9", color: "#4a4a4a" };
-		// switch (currentRoute) {
-		//   case '/':
-		//     NavbarTitle = 'Scene It';
-		//     break;
-		//   case '/reviewform':
-		//     NavbarTitle = 'New Review';
-		//     break;
-		//   case '/reviewlist':
-		//     NavbarTitle = 'My Reviews';
-		//     break;
-		//   case '/info':
-		//     NavbarTitle = 'App Info';
-		//     break;
-		//   case '/movies':
-		//     NavbarTitle = 'Movies';
-		//     break;
-		//   default:
-		//     NavbarTitle = '404';
-		// }
-		// // Regex test for review/:id and review/edit/:id routes
-		// if (/\/review\//.test(currentRoute)) NavbarTitle = 'Review';
-		// if (/\/review\/edit/.test(currentRoute)) NavbarTitle = 'Edit Review';
 
 		let showBackButton = false;
 
@@ -156,19 +134,6 @@ class Navbar extends Component {
 						role="toolbar"
 						style={!isLoggedIn ? { paddingRight: "20px" } : null}
 					>
-						{/* {showBackButton ? (
-              <div style={{ height: 20, width: 50 }} />
-            ) : (
-              
-              <Link to="/reviewform" style={{ textDecoration: 'none' }}>
-                  <i
-                    className="material-icons mdc-top-app-bar__action-item"
-                    style={currentRoute !== '/' ? { color: '#4a4a4a' } : null}
-                  >
-                    create
-                  </i>
-              </Link>
-            )} */}
 						{rightTopBarItem}
 					</section>
 				</div>

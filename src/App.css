@@ -1,6 +1,11 @@
-/* Global utitlity classes */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
 
+/* Global utitlity classes */
 .center-content {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
