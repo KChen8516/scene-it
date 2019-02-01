@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Info Component should render properly 1`] = `
+<div
+  className="mdc-layout-grid"
+>
+  <div
+    className="mdc-layout-grid__inner"
+  >
+    <div
+      className="LogoSection mdc-layout-grid__cell"
+    >
+      <img
+        alt="Scene It logo"
+        className="Logo"
+        src="thanos.jpg"
+      />
+      <p
+        className="mdc-typography--subtitle1"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
+      >
+        Scene It
+      </p>
+      <span
+        className="mdc-typography--caption"
+        style={
+          Object {
+            "color": "#bcbcbc",
+            "fontWeight": 200,
+          }
+        }
+      >
+        version 1.0
+      </span>
+    </div>
+    <div
+      className="mdc-layout-grid__cell"
+    >
+      <div
+        className="SectionHeader"
+      >
+        <h2>
+          Credits
+        </h2>
+      </div>
+    </div>
+    <div
+      className="mdc-layout-grid__cell"
+    >
+      <ul
+        className="mdc-list mdc-list--dense mdc-list--non-interactive"
+        style={
+          Object {
+            "paddingLeft": 30,
+          }
+        }
+      >
+        <li
+          className="mdc-list-item"
+        >
+          <i
+            className="material-icons mdc-list-item__graphic"
+          >
+            important_devices
+          </i>
+          Designer: Sandy Chang
+        </li>
+        <li
+          className="mdc-list-item"
+        >
+          <i
+            className="material-icons mdc-list-item__graphic"
+          >
+            build
+          </i>
+          Engineer: Kai Chen
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { mount, shallow } from 'enzyme';
+import { mount, shallow } from "enzyme";
 
-import SideDrawer from './SideDrawer';
-import Login from '../login/Login';
+import SideDrawer from "./SideDrawer";
+import Login from "../login/Login";
 
-describe('SideDrawer', () => {
-    let mountedSideDrawer;
+xdescribe("SideDrawer", () => {
+	let mountedSideDrawer;
 
-    const sidedrawer = () => {
-        if(!mountedSideDrawer) {
-            mountedSideDrawer = shallow(<SideDrawer />);
-        }
-        return mountedSideDrawer;
-    }
+	const sidedrawer = () => {
+		if (!mountedSideDrawer) {
+			mountedSideDrawer = shallow(<SideDrawer />);
+		}
+		return mountedSideDrawer;
+	};
 
-    beforeEach(() => {
-        mountedSideDrawer: undefined
-    })
+	beforeEach(() => {
+		mountedSideDrawer: undefined;
+	});
 
-    // begin tests
+	// begin tests
 
-    it('should display Login component', () => {
-        const login = sidedrawer().find(Login);
-        console.log(sidedrawer().debug())
-        expect(login.length).toEqual(1);
-    })
-})
+	it("should display Login component", () => {
+		const login = sidedrawer().find(Login);
+		console.log(sidedrawer().debug());
+		expect(login.length).toEqual(1);
+	});
+});

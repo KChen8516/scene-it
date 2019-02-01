@@ -1,9 +1,9 @@
 // Create a feature module entry point for Reviews
 // import ReviewContainer from './reviewItem/ReviewContainer';
-export { default as ReviewList } from './reviewList/ReviewListContainer';
-export { default as ReviewForm } from './reviewForm/ReviewFormContainer';
-export { default as Review }  from './reviewItem/ReviewContainer';
-export { default as ReviewEdit } from './reviewEdit/ReviewEditContainer';
+export { default as ReviewList } from "./ReviewList/ReviewListContainer";
+export { default as ReviewForm } from "./ReviewForm/ReviewFormContainer";
+export { default as Review } from "./ReviewItem/ReviewContainer";
+export { default as ReviewEdit } from "./ReviewEdit/ReviewEditContainer";
 
 /**
  * Is there a way to import the presentational Review component

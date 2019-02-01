@@ -6,10 +6,10 @@ import "firebase/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 // Module Imports
-import { ReviewForm, Review, ReviewList, ReviewEdit } from "./review";
+import { ReviewForm, Review, ReviewList, ReviewEdit } from "./Review";
 import { Navbar } from "./Navbar";
 import { SideDrawer } from "./Sidedrawer";
-import Info from "./info/Info";
+import Info from "./Info/Info";
 import { MoviesHome } from "./movies";
 import { Home } from "./Home";
 

@@ -19,7 +19,10 @@ const config = {
 	storageBucket: "sceneit-dev.appspot.com",
 	messagingSenderId: "343767206718",
 };
-firebase.initializeApp(config);
+
+if (!firebase.apps.length) {
+	firebase.initializeApp(config);
+}
 
 class Login extends Component {
 	constructor(props) {
