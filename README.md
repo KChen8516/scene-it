@@ -5,8 +5,9 @@ A React & Redux UI with Firebase authenticaion and an Express/MongoDB backend (s
 
 ## Tasks
 ### UI
-- [ ] Fix spacing above content in Review and ReviewList
 - [ ] Improve desktop experience
+- [ ] Upgrade dropdown with [Downshift](https://github.com/downshift-js/downshift)?
+- [ ] Add a loading experience for switching between reviews
 
 ### Testing
 - [ ] Integrate react-testing-library
