@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+
 // Firebase setup
 import firebase from "firebase/app";
 import "firebase/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 // Module Imports
-import { ReviewForm, Review, ReviewList, ReviewEdit } from "./review";
+import { ReviewForm, Review, ReviewList, ReviewEdit } from "./Review";
 import { Navbar } from "./Navbar";
 import { SideDrawer } from "./Sidedrawer";
-import Info from "./info/Info";
-import { MoviesHome } from "./movies";
+import Info from "./Info/Info";
+import { Movie } from "./Movies";
 import { Home } from "./Home";
 
 // Components/HOC
@@ -88,7 +89,7 @@ class App extends Component {
 							<PrivateRoute exact path="/reviewlist" component={ReviewList} />
 							<PrivateRoute exact path="/reviewform" component={ReviewForm} />
 							<Route exact path="/" component={Home} />
-							<Route path="/movies" component={MoviesHome} />
+							<Route path="/movies" component={Movie} />
 							<Route path="/info" component={Info} />
 							<Route path="/review/:id" component={Review} />
 							<Route component={PageNotFound} />
