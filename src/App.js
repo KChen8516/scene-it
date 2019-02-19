@@ -89,7 +89,6 @@ class App extends Component {
 							<PrivateRoute exact path="/reviewlist" component={ReviewList} />
 							<PrivateRoute exact path="/reviewform" component={ReviewForm} />
 							<Route exact path="/" component={Home} />
-							{/* <Route path="/movies" component={MoviesHome} /> */}
 							<Route path="/movies" component={Movie} />
 							<Route path="/info" component={Info} />
 							<Route path="/review/:id" component={Review} />
